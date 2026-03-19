@@ -7662,21 +7662,26 @@ window.amTelemetry = _amTelemetry;
 
 // ── Pre-mount modal pri učitavanju stranice (ne čekaj klik) ──
 document.addEventListener('DOMContentLoaded', function() {
+  // ── Mount ODMAH na load — ne čekaj klik ──────────────────────
   if(typeof AmigellaModal !== 'undefined' && AmigellaModal.mount) {
     AmigellaModal.mount('modal-root');
     window._amMounted = true;
+    console.log('[Amigella] Modal pre-mounted ✓');
   }
 
-  // ── Touch fix za mobilno ──
+  // ── Touch fix za Android/iOS ──────────────────────────────────
   var addBtn = document.getElementById('add-cta');
   if (addBtn) {
     addBtn.addEventListener('touchend', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      if (typeof openAddMeal === 'function') {
-        openAddMeal();
+      // Direktno otvori — bez posrednika
+      if (typeof openModal === 'function') {
+        openModal();
       } else if (typeof AmigellaModal !== 'undefined') {
         AmigellaModal.open();
+      } else {
+        alert('Modal nije spreman — refresh stranice');
       }
     }, {passive: false});
   }
@@ -7755,13 +7760,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   window.openAddMeal = function() {
-    // Mount ako nije urađeno
+    // Mount ako nije urađeno (safety check)
     if(!window._amMounted) {
       AmigellaModal.mount('modal-root');
       window._amMounted = true;
       _addSaveListener();
     }
-    // Direktno pozovi openModal — bez setTimeout koji može failati na mobilnom
     if (typeof openModal === 'function') {
       openModal();
     } else {
@@ -11093,4 +11097,4 @@ document.addEventListener('visibilitychange',function(){
 </body>
 </html>
 
-<!-- debug -->
+<!-- premount fix -->
