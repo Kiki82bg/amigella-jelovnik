@@ -5667,15 +5667,12 @@ let _prevFocus=null;
 function openModal(){
   // ── Ako D.overlay nije spreman — mount pa retry ──────────────
   if(!D.overlay){
-    // Pokušaj mountovati ako nije urađeno
+    console.warn('[AM] openModal: D.overlay missing — pokušavam mount');
     if(typeof AmigellaModal !== 'undefined' && AmigellaModal.mount){
       AmigellaModal.mount('modal-root');
-      // Čekaj jedan tick pa pokušaj ponovo
-      setTimeout(openModal, 50);
-      return;
     }
-    console.warn('[AM] openModal: D.overlay missing');
-    return;
+    // Jedan pokušaj nakon mount
+    if(!D.overlay){ console.error('[AM] openModal: mount nije pomogao'); return; }
   }
   // ── AbortController — otkazuje sve AI zahtjeve kad modal zatvori ──
   window._amModalAbort = new AbortController();
@@ -7661,13 +7658,24 @@ window.amTelemetry = _amTelemetry;
 
 // ── END CHECKLIST MODULE ──────────────────────────────────────
 
-// ── Mobile touch fix za add-cta dugme ───────────────────────
+// ── Pre-mount modal pri učitavanju stranice (ne čekaj klik) ──
 document.addEventListener('DOMContentLoaded', function() {
+  if(typeof AmigellaModal !== 'undefined' && AmigellaModal.mount) {
+    AmigellaModal.mount('modal-root');
+    window._amMounted = true;
+  }
+
+  // ── Touch fix za mobilno ──
   var addBtn = document.getElementById('add-cta');
   if (addBtn) {
     addBtn.addEventListener('touchend', function(e) {
       e.preventDefault();
-      if (typeof openAddMeal === 'function') openAddMeal();
+      e.stopPropagation();
+      if (typeof openAddMeal === 'function') {
+        openAddMeal();
+      } else if (typeof AmigellaModal !== 'undefined') {
+        AmigellaModal.open();
+      }
     }, {passive: false});
   }
 });
@@ -7745,18 +7753,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   window.openAddMeal = function() {
-    if (!_mounted) {
+    // Mount ako nije urađeno
+    if(!window._amMounted) {
       AmigellaModal.mount('modal-root');
-      _mounted = true;
+      window._amMounted = true;
       _addSaveListener();
-      // Čekaj mount pa otvori
-      setTimeout(function() {
-        if(typeof openModal === 'function') openModal();
-        else AmigellaModal.open();
-      }, 30);
+    }
+    // Direktno pozovi openModal — bez setTimeout koji može failati na mobilnom
+    if (typeof openModal === 'function') {
+      openModal();
     } else {
-      if(typeof openModal === 'function') openModal();
-      else AmigellaModal.open();
+      AmigellaModal.open();
     }
   };
   // openModal se poziva kroz window.openAddMeal
@@ -11084,4 +11091,4 @@ document.addEventListener('visibilitychange',function(){
 </body>
 </html>
 
-<!-- overlay fix -->
+<!-- touch fix 2 -->
