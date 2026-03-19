@@ -7659,6 +7659,12 @@ document.addEventListener('DOMContentLoaded', function() {
     AmigellaModal.mount('modal-root');
     window._amMounted = true;
     console.log('[Amigella] Modal pre-mounted ✓');
+    // ── Auto-init forme — prikaži chipove i sve elemente ────────
+    setTimeout(function() {
+      if(typeof openModal === 'function') {
+        openModal();
+      }
+    }, 100);
   }
 
   // ── Touch fix za Android/iOS ──────────────────────────────────
@@ -11120,5 +11126,3 @@ document.addEventListener('visibilitychange',function(){
 </script>
 </body>
 </html>
-
-<!-- null fix -->
