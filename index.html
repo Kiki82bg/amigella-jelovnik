@@ -26,12 +26,13 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#EDE8F8">
 <meta name="supported-color-schemes" content="light">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-touch-fullscreen" content="yes">
 <title>Amigella · Jelovnik</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -40,7 +41,7 @@
   --ink:#1C1420;--ink2:#5A4B6A;--ink3:#9B8AAB;
   --gold:#C9A96E;--gold-bg:rgba(201,169,110,0.13);--gold-brd:rgba(201,169,110,0.35);
   --bg:#F4F0F8;--card:rgba(255,255,255,0.85);
-  --deep:#7A5AAE;--deep2:rgba(122,90,174,0.12);--deep3:rgba(122,90,174,0.22);
+  --deep:#7A5AAE;--pearl:#E8C7D3;--deep2:rgba(122,90,174,0.12);--deep3:rgba(122,90,174,0.22);
   --green:#3DB87A;--green2:rgba(61,184,122,0.12);
   --red:#D94F4F;--red2:rgba(217,79,79,0.1);
   --r:13px;--sh:0 2px 14px rgba(30,10,60,0.09);
@@ -71,7 +72,7 @@ body{
   .ms{background:linear-gradient(168deg,#F6F2FA 0%,#EBE3F5 100%)!important;}
   input,select,textarea{background:#f8f6fc!important;color:#2E1A47!important;}
   .chip{background:#fff!important;color:#2E1A47!important;}
-  .chip.sel{background:#7A5AAE!important;color:#fff!important;}
+  .chip.sel{background:#9B7FCC!important;color:#fff!important;}
   .plan-acc{background:rgba(255,255,255,0.93)!important;}
   .plan-acc-title,.plan-meal-name{color:#1C1420!important;}
   #am-modal,.am-footer{background:#fff!important;color:#1C1420!important;}
@@ -86,15 +87,16 @@ body{
 /* ── Phone shell — puno na telefonu ── */
 .phone{
   width:100%;max-width:430px;
-  height:100vh;height:100svh;
+  height:100vh;height:100dvh;
+  min-height:-webkit-fill-available;
   background:var(--bg);
   border-radius:0;box-shadow:none;
   display:flex;flex-direction:column;
-  overflow:hidden;position:relative;flex-shrink:0;
+  overflow:hidden;overflow-x:hidden;position:relative;flex-shrink:0;
 }
 @media(min-width:500px){
   body{padding:16px;}
-  .phone{width:390px;height:844px;border-radius:42px;box-shadow:0 44px 110px rgba(40,10,80,0.38),inset 0 0 0 1.5px rgba(255,255,255,0.45);}
+  .phone{width:390px;height:844px;min-height:unset;border-radius:42px;box-shadow:0 44px 110px rgba(40,10,80,0.38),inset 0 0 0 1.5px rgba(255,255,255,0.45);}
 }
 
 /* ── Header ── */
@@ -200,13 +202,13 @@ input::-moz-placeholder, textarea::-moz-placeholder { color:#5A4B6A !important; 
 /* ── Tab 1 chip rows (pill stil, finalni mockup) ── */
 .am-chip-row{display:flex;gap:5px;margin-bottom:10px;flex-wrap:nowrap}
 .am-chip-row .chip{flex:1;min-width:0;height:28px;border-radius:100px;padding:0 6px;font-size:10px;justify-content:center;border:0.5px solid rgba(122,90,174,.25);background:#fff;color:#2E1A47}
-.am-chip-row .chip[aria-selected="true"],.am-chip-row .chip.sel{background:var(--deep);border-color:var(--deep);color:#fff;font-weight:500}
+.am-chip-row .chip[aria-selected="true"],.am-chip-row .chip.sel{background:#9B7FCC;border-color:#9B7FCC;color:#fff;font-weight:500}
 .am-sec-label{font-size:11px;font-weight:500;color:var(--deep);margin-bottom:6px;margin-top:2px}
 /* Stil za am-chips lista — pill chipovi */
 #am-meal-types-chips{display:block;padding:0;margin:0}
 /* am-chip-row unutar am-meal-types-chips */
 #am-meal-types-chips .am-chip-row .chip{flex:1;min-width:0;height:28px;border-radius:100px;padding:0 6px;font-size:10px;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(122,90,174,.25);background:#fff;cursor:pointer;font-family:var(--font);font-weight:400;color:#2E1A47;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
-#am-meal-types-chips .am-chip-row .chip.sel,#am-meal-types-chips .am-chip-row .chip[aria-selected="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+#am-meal-types-chips .am-chip-row .chip.sel,#am-meal-types-chips .am-chip-row .chip[aria-selected="true"]{background:#9B7FCC;border-color:#9B7FCC;color:#fff}
 #am-meal-types-chips .am-chip-row .chip .chip__remove{display:none}
 /* meal-type-sep kao label između redova */
 #am-meal-types-chips .meal-type-sep{font-size:11px;font-weight:500;color:var(--deep);margin:8px 0 6px;padding:0}
@@ -278,10 +280,10 @@ input::-moz-placeholder, textarea::-moz-placeholder { color:#5A4B6A !important; 
 
 /* Category chips */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
-.chip{padding:7px 16px;border-radius:100px;border:0.5px solid rgba(122,90,174,.25);background:#fff;font-family:var(--font);font-size:13px;font-weight:400;color:#2E1A47;cursor:pointer;transition:all .15s;user-select:none;display:inline-flex;align-items:center;gap:5px;min-height:34px}
+.chip{padding:10px 18px;border-radius:100px;border:1px solid rgba(122,90,174,.25);background:#fff;font-family:var(--font);font-size:14px;font-weight:500;color:#2E1A47;cursor:pointer;transition:all .15s;user-select:none;display:inline-flex;align-items:center;gap:5px;min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .chip:hover{border-color:var(--deep);color:var(--deep)}
-.chip.sel{background:var(--deep);border-color:var(--deep);color:#fff;font-weight:700;letter-spacing:.01em}
-.chip.required.sel{background:var(--deep);color:white}
+.chip.sel{background:#9B7FCC;border-color:#9B7FCC;color:#fff;font-weight:600}
+.chip.required.sel{background:#9B7FCC;color:white}
 .chip.warn{border-color:var(--red);color:var(--red);animation:shake .35s ease}
 .chip-x{font-size:10px;opacity:.75;cursor:pointer;line-height:1;padding:1px 2px;border-radius:50%;transition:opacity .15s;flex-shrink:0}
 .chip-x:hover{opacity:1;background:rgba(255,255,255,.25)}
@@ -513,12 +515,12 @@ input::-moz-placeholder, textarea::-moz-placeholder { color:#5A4B6A !important; 
 
 
 /* ── Overlay ── */
-#am-overlay{position:absolute;inset:0;z-index:1000;background:rgba(18,10,32,.55);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;opacity:0;transition:opacity var(--anim);border-radius:42px;overflow:hidden}
+#am-overlay{will-change:opacity;position:absolute;inset:0;z-index:1000;background:rgba(18,10,32,.55);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;opacity:0;transition:opacity var(--anim);border-radius:42px;overflow:hidden}
 #am-overlay.visible{opacity:1}
 #am-overlay.closing{opacity:0}
 
 /* ── Modal sheet ── */
-#am-modal{width:100%;max-width:344px;background:#fff;border-radius:0;max-height:100%;height:100%;display:flex;flex-direction:column;box-shadow:none;transform:translateY(-100%);transition:transform 220ms cubic-bezier(0.34,1.4,0.64,1)}
+#am-modal{contain:layout style;width:100%;max-width:344px;background:#fff;border-radius:0;max-height:100%;height:100%;display:flex;flex-direction:column;box-shadow:none;transform:translateY(-100%);transition:transform 220ms cubic-bezier(0.34,1.4,0.64,1)}
 #am-overlay.visible #am-modal{transform:translateY(0)}
 #am-overlay.closing #am-modal{transform:translateY(-100%)}
 .am-handle{width:40px;height:4px;background:rgba(110,80,170,.22);border-radius:var(--r-pill);margin:12px auto 0;flex-shrink:0}
@@ -560,7 +562,7 @@ input::-moz-placeholder, textarea::-moz-placeholder { color:#5A4B6A !important; 
 .chip{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border:0.5px solid rgba(122,90,174,.25);border-radius:100px;background:#fff;font-family:var(--font);font-size:11px;font-weight:400;color:var(--ink2);cursor:pointer;user-select:none;transition:all var(--anim);min-height:28px;line-height:1.3}
 .chip:hover{border-color:var(--deep);color:var(--deep)}
 .chip:focus-visible{outline:2px solid var(--deep);outline-offset:2px}
-.chip[aria-selected="true"],.chip.sel{background:var(--deep);border-color:var(--deep);color:#fff;font-weight:500}
+.chip[aria-selected="true"],.chip.sel{background:#9B7FCC;border-color:#9B7FCC;color:#fff;font-weight:500}
 .chip__label{pointer-events:none}.chip__dot{pointer-events:none}.chip span{pointer-events:none}
 .chip__remove{appearance:none;border:0;background:transparent;pointer-events:auto;cursor:pointer;line-height:1;font-size:15px;font-weight:300;padding:0 1px;border-radius:4px;color:inherit;opacity:.75;display:flex;align-items:center;justify-content:center;min-width:18px;min-height:18px;transition:opacity var(--anim),background var(--anim)}
 .chip__remove:hover{opacity:1;background:rgba(255,255,255,.25)}
@@ -1977,53 +1979,54 @@ const AC_I18N={
 function acI18n(k){return(AC_I18N[LANG]||AC_I18N.sh)[k]||AC_I18N.en[k]||k;}
 
 const DISH_SEED=[
-  {canonical:'mashed_potatoes',pop:90,names:{sh:['pire krompir','krompir pire','pire od krompira','pire','krompir','kromp'],en:['mashed potatoes','mash','mashed potato'],de:['kartoffelpüree','kartoffelbrei','kartoffelmus','kartoffelpü'],fr:['purée de pommes de terre','purée','purée de pom','puree de pommes'],it:['purè di patate','pure di patate','purè di pat','pure di pat'],ru:['картофельное пюре','пюре','пюре из картофеля','пюре из карт','пюре карт'],es:['puré de patatas','puré de pat','pure de patatas','pure patatas','puré']}},
-  {canonical:'stuffed_peppers',pop:95,names:{sh:['punjene paprike','paprike punjene','punjena paprika'],en:['stuffed peppers'],de:['gefüllte paprika'],fr:['poivrons farcis'],it:['peperoni ripieni'],ru:['фаршированный перец'],es:['pimientos rellenos']}},
-  {canonical:'pasta_carbonara',pop:92,names:{sh:['pasta carbonara','karbonara','špagete karbonara'],en:['pasta carbonara','carbonara'],de:['pasta carbonara'],fr:['pâtes carbonara'],it:['pasta alla carbonara','carbonara'],ru:['паста карбонара','карбонара'],es:['pasta carbonara']}},
-  {canonical:'oatmeal',pop:80,names:{sh:['ovsena kaša','ovsena kasa','kaša od zobi'],en:['oatmeal','porridge'],de:['haferbrei','porridge'],fr:["bouillie d'avoine",'porridge'],it:["pappa d'avena"],ru:['овсяная каша','овсянка'],es:['avena','gachas de avena']}},
-  {canonical:'pasta_tomato',pop:88,names:{sh:['pasta al pomodoro','tjestenina s paradajzom'],en:['pasta with tomato sauce'],de:['pasta mit tomatensoße'],fr:['pâtes à la tomate'],it:['pasta al pomodoro'],ru:['паста с томатным соусом'],es:['pasta con tomate']}},
-  {canonical:'scrambled_eggs',pop:85,names:{sh:['kajgana','jaja kajgana','mešana jaja'],en:['scrambled eggs'],de:['rührei'],fr:['œufs brouillés'],it:['uova strapazzate'],ru:['яичница-болтунья','яичница'],es:['huevos revueltos']}},
-  {canonical:'pancakes',pop:87,names:{sh:['palačinke','palacinke','crepes'],en:['pancakes','crepes'],de:['pfannkuchen','crêpes'],fr:['crêpes','pancakes'],it:['crepes','frittelle'],ru:['блины','блинчики'],es:['crepes','tortitas']}},
-  {canonical:'moussaka',pop:83,names:{sh:['musaka','moussaka'],en:['moussaka'],de:['moussaka'],fr:['moussaka'],it:['moussaka'],ru:['мусака'],es:['musaka']}},
-  {canonical:'stuffed_cabbage',pop:82,names:{sh:['sarma','sarme','punjeni kupus'],en:['stuffed cabbage rolls'],de:['kohlrouladen'],fr:['feuilles de chou farcies'],it:['involtini di verza'],ru:['голубцы'],es:['rollitos de col']}},
-  {canonical:'bean_stew',pop:78,names:{sh:['pasulj','grah','varivo od pasulja'],en:['bean stew','bean soup'],de:['bohneneintopf'],fr:['ragoût de haricots'],it:['fagioli in umido'],ru:['фасолевый суп','фасоль'],es:['guiso de alubias']}},
-  {canonical:'chicken_paprikash',pop:80,names:{sh:['pileći paprikaš','paprikaš od piletine'],en:['chicken paprikash'],de:['hähnchenpaprikasch'],fr:['paprikache de poulet'],it:['pollo alla paprika'],ru:['куриный паприкаш'],es:['pollo a la paprika']}},
-  {canonical:'goulash',pop:84,names:{sh:['gulaš','gulas','golaž'],en:['goulash'],de:['gulasch'],fr:['goulache'],it:['gulash'],ru:['гуляш'],es:['goulash']}},
-  {canonical:'caesar_salad',pop:88,names:{sh:['cezar salata','caesar salata'],en:['caesar salad'],de:['caesar-salat'],fr:['salade césar'],it:['insalata caesar'],ru:['салат цезарь'],es:['ensalada césar']}},
-  {canonical:'pizza_margherita',pop:93,names:{sh:['pica margarita','pizza margherita'],en:['pizza margherita'],de:['pizza margherita'],fr:['pizza margherita'],it:['pizza margherita'],ru:['пицца маргарита'],es:['pizza margarita']}},
-  {canonical:'lasagna',pop:90,names:{sh:['lazanje','lasagna'],en:['lasagna','lasagne'],de:['lasagne'],fr:['lasagne'],it:['lasagna','lasagne'],ru:['лазанья'],es:['lasaña']}},
-  {canonical:'risotto',pop:86,names:{sh:['rižoto','risotto'],en:['risotto'],de:['risotto'],fr:['risotto'],it:['risotto'],ru:['ризотто'],es:['risotto']}},
-  {canonical:'hamburger',pop:89,names:{sh:['hamburger','burger'],en:['hamburger','burger'],de:['hamburger','burger'],fr:['hamburger'],it:['hamburger'],ru:['гамбургер'],es:['hamburguesa']}},
-  {canonical:'grilled_chicken',pop:87,names:{sh:['piletina na žaru','grilovana piletina'],en:['grilled chicken'],de:['gegrilltes hähnchen'],fr:['poulet grillé'],it:['pollo alla griglia'],ru:['куриное филе на гриле'],es:['pollo a la parrilla']}},
-  {canonical:'soup_vegetable',pop:79,names:{sh:['čorba od povrća','povrtna supa','juha od povrća'],en:['vegetable soup'],de:['gemüsesuppe'],fr:['soupe de légumes'],it:['zuppa di verdure'],ru:['овощной суп'],es:['sopa de verduras']}},
-  {canonical:'tiramisu',pop:91,names:{sh:['tiramisu'],en:['tiramisu'],de:['tiramisu'],fr:['tiramisu'],it:['tiramisù'],ru:['тирамису'],es:['tiramisú'],ings:['mascarpone','jaja','šećer','espresso','ladyfinger keks','pavlaka','kakao prah']}},
-  {canonical:'pasta_bolognese',pop:91,names:{sh:['pasta bolognese','bolonjeze','špagete bolonjeze'],en:['pasta bolognese','spaghetti bolognese'],de:['spaghetti bolognese'],fr:['pâtes bolognaise'],it:['pasta alla bolognese'],ru:['паста болоньезе'],es:['pasta boloñesa']}},
-  {canonical:'greek_salad',pop:84,names:{sh:['grčka salata','šopska salata'],en:['greek salad'],de:['griechischer salat'],fr:['salade grecque'],it:['insalata greca'],ru:['греческий салат'],es:['ensalada griega']}},
-  {canonical:'beef_stew',pop:81,names:{sh:['goveđi gulaš','varivo od govedine'],en:['beef stew'],de:['rindergulasch'],fr:['ragoût de bœuf'],it:['spezzatino di manzo'],ru:['тушёная говядина'],es:['estofado de res']}},
-  {canonical:'cheesecake',pop:88,names:{sh:['cheesecake','torta sa sirom'],en:['cheesecake'],de:['käsekuchen'],fr:['cheesecake'],it:['cheesecake'],ru:['чизкейк'],es:['tarta de queso'],ings:['krem sir','šećer','jaja','pavlaka','keks','maslac','vanilin šećer','limun']}},
-  {canonical:'apple_pie',pop:90,names:{sh:['pita sa jabukama','štrudla od jabuka','kolač sa jabukama','kolač od jabuka','jabukova pita','torta sa jabukama'],en:['apple pie','apple strudel','apple cake'],de:['apfelkuchen','apfelstrudel'],fr:['tarte aux pommes','gâteau aux pommes'],it:['crostata di mele','torta di mele'],ru:['яблочный пирог'],es:['tarta de manzana']},ings:['jabuke','brašno','šećer','maslac','jaja','cimet','prašak za pecivo','limunov sok']},
-  {canonical:'chocolate_cake',pop:87,names:{sh:['čokoladna torta','torta od čokolade'],en:['chocolate cake'],de:['schokoladenkuchen'],fr:['gâteau au chocolat'],it:['torta al cioccolato'],ru:['шоколадный торт'],es:['tarta de chocolate'],ings:['brašno','kakao prah','šećer','jaja','maslac','mleko','prašak za pecivo','vanilin šećer']}},
-  {canonical:'visnja_kolac',pop:82,names:{sh:['kolač sa višnjama','kolač od višanja','torta sa višnjama','pita od višanja','višnjeva torta','kolac sa visnjama','kolac od visanja'],en:['cherry cake','cherry pie','cherry tart'],de:['kirschkuchen','kirschtorte'],fr:['tarte aux cerises','gâteau aux cerises'],it:['torta alle ciliegie'],ru:['вишнёвый пирог'],es:['tarta de cerezas']},ings:['višnje','brašno','šećer','jaja','maslac','prašak za pecivo','vanilin šećer','kisela pavlaka']},
-  {canonical:'jagoda_kolac',pop:80,names:{sh:['kolač sa jagodama','torta sa jagodama','jagodina torta','kolač od jagoda'],en:['strawberry cake','strawberry shortcake'],de:['erdbeerkuchen'],fr:['tarte aux fraises','gâteau aux fraises'],it:['torta alle fragole'],ru:['клубничный торт'],es:['tarta de fresas']},ings:['jagode','brašno','šećer','jaja','maslac','prašak za pecivo','šlag','vanilin šećer']},
-  {canonical:'vocna_torta',pop:79,names:{sh:['voćna torta','torta sa voćem','voćni kolač','torta od voća'],en:['fruit cake','fruit tart'],de:['obstkuchen','obsttorte'],fr:['tarte aux fruits','gâteau aux fruits'],it:['torta di frutta'],ru:['фруктовый торт'],es:['tarta de frutas']},ings:['sezonsko voće','keks','šlag','šećer','želatin','maslac','vanilin šećer']},
-  {canonical:'koh_griz',pop:78,names:{sh:['koh od griza','koh','griz kolač','kolač od griza','kolač sa grizom','griz torta','koh torta','koh od grisa'],en:['semolina cake','semolina pudding'],de:['grieskuchen','griesauflauf'],fr:['gâteau à la semoule'],it:['torta di semolino'],ru:['манник','манный пирог'],es:['pastel de sémola']},ings:['griz','šećer','jaja','mleko','maslac','prašak za pecivo','vanilin šećer','limunova korica']},
+  {canonical:'mashed_potatoes',pop:90,names:{sh:['pire krompir','krompir pire','pire od krompira','pire','krompir','kromp'],en:['mashed potatoes','mash','mashed potato'],de:['kartoffelpüree','kartoffelbrei'],fr:['purée de pommes de terre','purée'],it:['purè di patate'],ru:['картофельное пюре','пюре'],es:['puré de patatas']},ings:['krompir','maslac','mleko','so','biber','muškatni oraščić']},
+  {canonical:'stuffed_peppers',pop:95,names:{sh:['punjene paprike','paprike punjene','punjena paprika'],en:['stuffed peppers'],de:['gefüllte paprika'],fr:['poivrons farcis'],it:['peperoni ripieni'],ru:['фаршированный перец'],es:['pimientos rellenos']},ings:['paprika','mleveno meso','pirinač','luk','paradajz','ulje','so','biber','peršun']},
+  {canonical:'pasta_carbonara',pop:92,names:{sh:['pasta carbonara','karbonara','špagete karbonara'],en:['pasta carbonara','carbonara'],de:['pasta carbonara'],fr:['pâtes carbonara'],it:['pasta alla carbonara','carbonara'],ru:['паста карбонара'],es:['pasta carbonara']},ings:['špagete','guanciale ili slanina','jaja','pecorino sir','crni biber','so']},
+  {canonical:'oatmeal',pop:80,names:{sh:['ovsena kaša','ovsena kasa','kaša od zobi'],en:['oatmeal','porridge'],de:['haferbrei','porridge'],fr:["bouillie d'avoine",'porridge'],it:["pappa d'avena"],ru:['овсяная каша','овсянка'],es:['avena']},ings:['ovsene pahuljice','mleko','med','banana','cimet','so']},
+  {canonical:'pasta_tomato',pop:88,names:{sh:['pasta al pomodoro','tjestenina s paradajzom'],en:['pasta with tomato sauce'],de:['pasta mit tomatensoße'],fr:['pâtes à la tomate'],it:['pasta al pomodoro'],ru:['паста с томатным соусом'],es:['pasta con tomate']},ings:['tjestenina','paradajz pelati','češnjak','bosiljak','maslinovo ulje','so','biber','parmezan']},
+  {canonical:'scrambled_eggs',pop:85,names:{sh:['kajgana','jaja kajgana','mešana jaja'],en:['scrambled eggs'],de:['rührei'],fr:['œufs brouillés'],it:['uova strapazzate'],ru:['яичница-болтунья'],es:['huevos revueltos']},ings:['jaja','maslac','mleko','so','biber','peršun']},
+  {canonical:'pancakes',pop:87,names:{sh:['palačinke','palacinke','crepes'],en:['pancakes','crepes'],de:['pfannkuchen','crêpes'],fr:['crêpes','pancakes'],it:['crepes','frittelle'],ru:['блины','блинчики'],es:['crepes','tortitas']},ings:['brašno','jaja','mleko','šećer','maslac','so','vanilin šećer']},
+  {canonical:'moussaka',pop:83,names:{sh:['musaka','moussaka'],en:['moussaka'],de:['moussaka'],fr:['moussaka'],it:['moussaka'],ru:['мусака'],es:['musaka']},ings:['mleveno meso','patlidžan','krompir','luk','paradajz','ulje','so','biber','bešamel sos','jaja','parmezan']},
+  {canonical:'stuffed_cabbage',pop:82,names:{sh:['sarma','sarme','punjeni kupus'],en:['stuffed cabbage rolls'],de:['kohlrouladen'],fr:['feuilles de chou farcies'],it:['involtini di verza'],ru:['голубцы'],es:['rollitos de col']},ings:['kiseli kupus','mleveno meso','pirinač','luk','paradajz','ulje','so','biber','lovor','paprika mljevena']},
+  {canonical:'bean_stew',pop:78,names:{sh:['pasulj','grah','varivo od pasulja'],en:['bean stew','bean soup'],de:['bohneneintopf'],fr:['ragoût de haricots'],it:['fagioli in umido'],ru:['фасолевый суп'],es:['guiso de alubias']},ings:['pasulj','luk','šargarepa','celer','lovor','so','biber','ulje','peršun']},
+  {canonical:'chicken_paprikash',pop:80,names:{sh:['pileći paprikaš','paprikaš od piletine'],en:['chicken paprikash'],de:['hähnchenpaprikasch'],fr:['paprikache de poulet'],it:['pollo alla paprika'],ru:['куриный паприкаш'],es:['pollo a la paprika']},ings:['piletina','luk','paprika mljevena','kisela pavlaka','ulje','so','biber','peršun','brašno']},
+  {canonical:'goulash',pop:84,names:{sh:['gulaš','gulas','golaž'],en:['goulash'],de:['gulasch'],fr:['goulache'],it:['gulash'],ru:['гуляш'],es:['goulash']},ings:['govedina','luk','paprika','paradajz','ulje','so','biber','lovor','kuminum','brašno']},
+  {canonical:'caesar_salad',pop:88,names:{sh:['cezar salata','caesar salata'],en:['caesar salad'],de:['caesar-salat'],fr:['salade césar'],it:['insalata caesar'],ru:['салат цезарь'],es:['ensalada césar']},ings:['romaine salata','parmezan','krutoni','piletina','caesar dresing','češnjak','limun','anšovis','worcester sos']},
+  {canonical:'pizza_margherita',pop:93,names:{sh:['pica margarita','pizza margherita'],en:['pizza margherita'],de:['pizza margherita'],fr:['pizza margherita'],it:['pizza margherita'],ru:['пицца маргарита'],es:['pizza margarita']},ings:['tijesto za pizzu','paradajz sos','mocarela','bosiljak','maslinovo ulje','so']},
+  {canonical:'lasagna',pop:90,names:{sh:['lazanje','lasagna'],en:['lasagna','lasagne'],de:['lasagne'],fr:['lasagne'],it:['lasagna','lasagne'],ru:['лазанья'],es:['lasaña']},ings:['lazanje tjestenina','mleveno meso','paradajz sos','bešamel sos','parmezan','mocarela','luk','češnjak','ulje']},
+  {canonical:'risotto',pop:86,names:{sh:['rižoto','risotto'],en:['risotto'],de:['risotto'],fr:['risotto'],it:['risotto'],ru:['ризотто'],es:['risotto']},ings:['arborio pirinač','bujon','luk','maslac','parmezan','bijelo vino','maslinovo ulje','so','biber']},
+  {canonical:'hamburger',pop:89,names:{sh:['hamburger','burger'],en:['hamburger','burger'],de:['hamburger','burger'],fr:['hamburger'],it:['hamburger'],ru:['гамбургер'],es:['hamburguesa']},ings:['mleveno goveđe meso','lepinja','zelena salata','paradajz','luk','kečap','majonez','so','biber','sir']},
+  {canonical:'grilled_chicken',pop:87,names:{sh:['piletina na žaru','grilovana piletina'],en:['grilled chicken'],de:['gegrilltes hähnchen'],fr:['poulet grillé'],it:['pollo alla griglia'],ru:['куриное филе на гриле'],es:['pollo a la parrilla']},ings:['pileći file','maslinovo ulje','češnjak','limun','ružmarin','so','biber','paprika']},
+  {canonical:'soup_vegetable',pop:79,names:{sh:['čorba od povrća','povrtna supa','juha od povrća'],en:['vegetable soup'],de:['gemüsesuppe'],fr:['soupe de légumes'],it:['zuppa di verdure'],ru:['овощной суп'],es:['sopa de verduras']},ings:['šargarepa','krompir','celer','luk','grašak','paradajz','ulje','so','biber','peršun','lovor']},
+  {canonical:'tiramisu',pop:91,names:{sh:['tiramisu'],en:['tiramisu'],de:['tiramisu'],fr:['tiramisu'],it:['tiramisù'],ru:['тирамису'],es:['tiramisú']},ings:['mascarpone','jaja','šećer','espresso','ladyfinger keks','pavlaka','kakao prah']},
+  {canonical:'pasta_bolognese',pop:91,names:{sh:['pasta bolognese','bolonjeze','špagete bolonjeze'],en:['pasta bolognese','spaghetti bolognese'],de:['spaghetti bolognese'],fr:['pâtes bolognaise'],it:['pasta alla bolognese'],ru:['паста болоньезе'],es:['pasta boloñesa']},ings:['špagete','mleveno meso','paradajz pelati','luk','šargarepa','celer','crveno vino','ulje','so','biber','parmezan']},
+  {canonical:'greek_salad',pop:84,names:{sh:['grčka salata','šopska salata'],en:['greek salad'],de:['griechischer salat'],fr:['salade grecque'],it:['insalata greca'],ru:['греческий салат'],es:['ensalada griega']},ings:['paradajz','krastavac','paprika','crni luk','feta sir','masline','maslinovo ulje','origano','so']},
+  {canonical:'beef_stew',pop:81,names:{sh:['goveđi gulaš','varivo od govedine'],en:['beef stew'],de:['rindergulasch'],fr:['ragoût de bœuf'],it:['spezzatino di manzo'],ru:['тушёная говядина'],es:['estofado de res']},ings:['govedina','krompir','šargarepa','luk','paradajz','crveno vino','lovor','so','biber','ulje','brašno']},
+  {canonical:'cheesecake',pop:88,names:{sh:['cheesecake','torta sa sirom'],en:['cheesecake'],de:['käsekuchen'],fr:['cheesecake'],it:['cheesecake'],ru:['чизкейк'],es:['tarta de queso']},ings:['krem sir','šećer','jaja','pavlaka','keks','maslac','vanilin šećer','limun']},
+  {canonical:'apple_pie',pop:90,names:{sh:['pita sa jabukama','štrudla od jabuka','kolač sa jabukama','kolač od jabuka','jabukova pita','torta sa jabukama'],en:['apple pie','apple strudel','apple cake'],de:['apfelkuchen','apfelstrudel'],fr:['tarte aux pommes'],it:['crostata di mele'],ru:['яблочный пирог'],es:['tarta de manzana']},ings:['jabuke','brašno','šećer','maslac','jaja','cimet','prašak za pecivo','limunov sok']},
+  {canonical:'chocolate_cake',pop:87,names:{sh:['čokoladna torta','torta od čokolade'],en:['chocolate cake'],de:['schokoladenkuchen'],fr:['gâteau au chocolat'],it:['torta al cioccolato'],ru:['шоколадный торт'],es:['tarta de chocolate']},ings:['brašno','kakao prah','šećer','jaja','maslac','mleko','prašak za pecivo','vanilin šećer']},
+  {canonical:'visnja_kolac',pop:82,names:{sh:['kolač sa višnjama','kolač od višanja','torta sa višnjama','pita od višanja','višnjeva torta','kolac sa visnjama'],en:['cherry cake','cherry pie'],de:['kirschkuchen'],fr:['tarte aux cerises'],it:['torta alle ciliegie'],ru:['вишнёвый пирог'],es:['tarta de cerezas']},ings:['višnje','brašno','šećer','jaja','maslac','prašak za pecivo','vanilin šećer','kisela pavlaka']},
+  {canonical:'jagoda_kolac',pop:80,names:{sh:['kolač sa jagodama','torta sa jagodama','jagodina torta','kolač od jagoda'],en:['strawberry cake'],de:['erdbeerkuchen'],fr:['tarte aux fraises'],it:['torta alle fragole'],ru:['клубничный торт'],es:['tarta de fresas']},ings:['jagode','brašno','šećer','jaja','maslac','prašak za pecivo','šlag','vanilin šećer']},
+  {canonical:'vocna_torta',pop:79,names:{sh:['voćna torta','torta sa voćem','voćni kolač','torta od voća'],en:['fruit cake','fruit tart'],de:['obstkuchen'],fr:['tarte aux fruits'],it:['torta di frutta'],ru:['фруктовый торт'],es:['tarta de frutas']},ings:['sezonsko voće','keks','šlag','šećer','želatin','maslac','vanilin šećer']},
+  {canonical:'koh_griz',pop:78,names:{sh:['koh od griza','koh','griz kolač','kolač od griza','kolač sa grizom','griz torta','koh torta','koh od grisa'],en:['semolina cake'],de:['grieskuchen'],fr:['gâteau à la semoule'],it:['torta di semolino'],ru:['манник'],es:['pastel de sémola']},ings:['griz','šećer','jaja','mleko','maslac','prašak za pecivo','vanilin šećer','limunova korica']},
   {canonical:'koh_jabuka',pop:76,names:{sh:['koh od jabuka','jabučni koh','koh sa jabukama'],en:['apple semolina cake'],de:['apfel griesskuchen'],fr:['gâteau semoule pommes'],it:['torta semolino mele'],ru:['манник с яблоками'],es:['pastel sémola manzana']},ings:['griz','jabuke','šećer','jaja','mleko','maslac','cimet','prašak za pecivo']},
-  {canonical:'reforma_torta',pop:80,names:{sh:['reforma torta','reforma','reform torta'],en:['reform cake','walnut chocolate cake'],de:['reformtorte'],fr:['gâteau réforme'],it:['torta riforma'],ru:['торт реформа'],es:['tarta reforma']},ings:['orasi','čokolada','jaja','šećer','maslac','brašno','kakao']},
-  {canonical:'medenjaci',pop:77,names:{sh:['medenjaci','medenjak','medeni kolačići'],en:['gingerbread cookies','honey cookies'],de:['lebkuchen','honigkekse'],fr:['pain d épices','biscuits au miel'],it:['biscotti al miele'],ru:['пряники'],es:['galletas de miel']},ings:['brašno','med','šećer','jaja','maslac','cimet','karanfilić','soda bikarbona']},
-  {canonical:'vanilice',pop:79,names:{sh:['vanilice','vanilica','vanilice kolačići'],en:['vanilla crescent cookies','vanilla rolls'],de:['vanillekipferl'],fr:['croissants à la vanille'],it:['biscotti alla vaniglia'],ru:['ванильные рогалики'],es:['galletas de vainilla']},ings:['brašno','maslac','šećer u prahu','orasi','vanilin šećer','jaja']},
-  {canonical:'orasnice',pop:75,names:{sh:['orasnice','orasnica','kolačići sa orasima'],en:['walnut cookies'],de:['nusskekse'],fr:['biscuits aux noix'],it:['biscotti alle noci'],ru:['ореховое печенье'],es:['galletas de nuez']},ings:['orasi','šećer','jaja','vanilin šećer','lemon']},
+  {canonical:'reforma_torta',pop:80,names:{sh:['reforma torta','reforma','reform torta'],en:['reform cake'],de:['reformtorte'],fr:['gâteau réforme'],it:['torta riforma'],ru:['торт реформа'],es:['tarta reforma']},ings:['orasi','čokolada','jaja','šećer','maslac','brašno','kakao']},
+  {canonical:'medenjaci',pop:77,names:{sh:['medenjaci','medenjak','medeni kolačići'],en:['gingerbread cookies'],de:['lebkuchen'],fr:["pain d'épices"],it:['biscotti al miele'],ru:['пряники'],es:['galletas de miel']},ings:['brašno','med','šećer','jaja','maslac','cimet','karanfilić','soda bikarbona']},
+  {canonical:'vanilice',pop:79,names:{sh:['vanilice','vanilica','vanilice kolačići'],en:['vanilla crescent cookies'],de:['vanillekipferl'],fr:['croissants à la vanille'],it:['biscotti alla vaniglia'],ru:['ванильные рогалики'],es:['galletas de vainilla']},ings:['brašno','maslac','šećer u prahu','orasi','vanilin šećer','jaja']},
+  {canonical:'orasnice',pop:75,names:{sh:['orasnice','orasnica','kolačići sa orasima'],en:['walnut cookies'],de:['nusskekse'],fr:['biscuits aux noix'],it:['biscotti alle noci'],ru:['ореховое печенье'],es:['galletas de nuez']},ings:['orasi','šećer','jaja','vanilin šećer','limun']},
   {canonical:'baklava',pop:88,names:{sh:['baklava','baklave'],en:['baklava'],de:['baklava'],fr:['baklava'],it:['baklava'],ru:['пахлава'],es:['baklava']},ings:['kore za pitu','orasi','šećer','med','maslac','cimet','voda','limun']},
   {canonical:'tufahije',pop:75,names:{sh:['tufahije','tufahija','punjene jabuke'],en:['stuffed apples','tufahije'],de:['gefüllte Äpfel'],fr:['pommes farcies'],it:['mele ripiene'],ru:['туфахийе'],es:['manzanas rellenas']},ings:['jabuke','orasi','šećer','šlag','vanilin šećer','limun']},
   {canonical:'hurmascice',pop:76,names:{sh:['hurmaščice','hurmasice','hurmašice'],en:['hurmasice'],de:['hurmasice'],fr:['hurmasice'],it:['hurmasice'],ru:['хурмашице'],es:['hurmasice']},ings:['brašno','maslac','jaja','šećer','prašak za pecivo','šerbet','voda','limun']},
   {canonical:'djuvec',pop:83,names:{sh:['đuveč','djuvec','đuveđ','duvec'],en:['djuvec','baked rice with vegetables'],de:['Djuvec'],fr:['djuvec'],it:['djuvec'],ru:['джувеч'],es:['djuvec']},ings:['pirinač','paprika','paradajz','luk','meso','ulje','so','biber','peršun']},
   {canonical:'podvarak',pop:77,names:{sh:['podvarak','kiseli kupus sa mesom'],en:['podvarak','baked sauerkraut'],de:['Podvarak'],fr:['podvarak'],it:['podvarak'],ru:['подварак'],es:['podvarak']},ings:['kiseli kupus','svinjetina','luk','ulje','biber','so','lovor','paprika mljevena']},
-  {canonical:'pasulj',pop:90,names:{sh:['pasulj','grah','prebranac','pasulj čorba'],en:['bean soup','bean stew'],de:['Bohnensuppe','Bohneneintopf'],fr:['soupe aux haricots'],it:['zuppa di fagioli'],ru:['фасолевый суп'],es:['sopa de judías']},ings:['pasulj','luk','šargarepa','ulje','so','biber','lovor','paprika','peršun']},
+  {canonical:'pasulj',pop:90,names:{sh:['pasulj','grah','prebranac','pasulj čorba'],en:['bean soup','bean stew'],de:['Bohnensuppe'],fr:['soupe aux haricots'],it:['zuppa di fagioli'],ru:['фасолевый суп'],es:['sopa de judías']},ings:['pasulj','luk','šargarepa','ulje','so','biber','lovor','paprika','peršun']},
   {canonical:'cevapi',pop:95,names:{sh:['ćevapi','ćevapčići','cevapi','cevapcici'],en:['cevapi','cevapcici','grilled minced meat'],de:['Ćevapčići'],fr:['ćevapčići'],it:['ćevapčići'],ru:['чевапчичи'],es:['ćevapčići']},ings:['mleveno goveđe meso','mleveno jagnjeće meso','beli luk','so','biber','soda bikarbona','luk']},
-  {canonical:'burek_meso',pop:93,names:{sh:['burek','burek sa mesom','pita burek'],en:['burek','meat pie','bosnian burek'],de:['Burek','Fleischburek'],fr:['burek','tourte à la viande'],it:['burek'],ru:['бурек'],es:['burek']},ings:['kore za pitu','mleveno meso','luk','so','biber','ulje','jaje']},
-  {canonical:'sushi',pop:88,names:{sh:['suši','sushi'],en:['sushi'],de:['sushi'],fr:['sushis'],it:['sushi'],ru:['суши'],es:['sushi']}},
-  {canonical:'tacos',pop:86,names:{sh:['takosi','tacos'],en:['tacos'],de:['tacos'],fr:['tacos'],it:['tacos'],ru:['тако'],es:['tacos']}},
-  {canonical:'burek',pop:88,names:{sh:['burek','pita s mesom','mesna pita'],en:['burek'],de:['burek'],fr:['burek'],it:['burek'],ru:['бурек'],es:['burek']}},
-  {canonical:'soup_chicken',pop:83,names:{sh:['pileća čorba','pileća supa','kokošja supa'],en:['chicken soup'],de:['hühnersuppe'],fr:['soupe de poulet'],it:['brodo di pollo'],ru:['куриный суп'],es:['sopa de pollo']}},
+  {canonical:'burek_meso',pop:93,names:{sh:['burek','burek sa mesom','pita burek'],en:['burek','meat pie','bosnian burek'],de:['Burek'],fr:['burek'],it:['burek'],ru:['бурек'],es:['burek']},ings:['kore za pitu','mleveno meso','luk','so','biber','ulje','jaje']},
+  {canonical:'sushi',pop:88,names:{sh:['suši','sushi'],en:['sushi'],de:['sushi'],fr:['sushis'],it:['sushi'],ru:['суши'],es:['sushi']},ings:['pirinač za suši','nori alge','losos','tuna','krastavac','avokado','soja sos','wasabi','đumbir']},
+  {canonical:'tacos',pop:86,names:{sh:['takosi','tacos'],en:['tacos'],de:['tacos'],fr:['tacos'],it:['tacos'],ru:['тако'],es:['tacos']},ings:['taco školjke','mleveno meso','zelena salata','paradajz','sir','kisela pavlaka','guacamole','salsa','luk']},
+  {canonical:'burek',pop:88,names:{sh:['burek','pita s mesom','mesna pita'],en:['burek'],de:['burek'],fr:['burek'],it:['burek'],ru:['бурек'],es:['burek']},ings:['kore za pitu','mleveno meso','luk','so','biber','ulje','jaje']},
+  {canonical:'soup_chicken',pop:83,names:{sh:['pileća čorba','pileća supa','kokošja supa'],en:['chicken soup'],de:['hühnersuppe'],fr:['soupe de poulet'],it:['brodo di pollo'],ru:['куриный суп'],es:['sopa de pollo']},ings:['piletina','šargarepa','celer','luk','peršun','so','biber','lovor','vermičeli']},
+
 ];
 
 // ── Normalize ────────────────────────────────────────────────────
@@ -2819,7 +2822,7 @@ const I18N={
     cat_dorucak:'Doru\u010dak',cat_rucak:'Ru\u010dak',cat_vecera:'Ve\u010dera',
     cat_omiljeno:'Omiljeno',cat_gosti:'Gosti',cat_brzo:'Brzo',
     cat_uzina:'Užina',cat_zdravo:'Zdravo',cat_jeftino:'Jeftino',cat_smrznuto:'Smrznuto',
-    lbl_moje_jelo:'Ovo jelo je...',lbl_moji_filteri:'Moji filteri',hint_moji_filteri:'Do 5 tvojih kategorija.',lbl_special:'Još malo o ovom jelu...',
+    lbl_moje_jelo:'Ovo jelo je...',lbl_moji_filteri:'Moji filteri',msg_ok:'U redu je',msg_relax:'Nema veze',hint_moji_filteri:'Do 5 tvojih kategorija.',lbl_special:'Još malo o ovom jelu...',
     lbl_extra_cats:'Moji filteri',hint_extra_cats:'Do 5 tvojih kategorija.',
     btn_nova_kat:'+ Novi filter',ph_nova_kat:'npr. Slatko',btn_dodaj_kat:'Dodaj',
     lbl_ings:'Sastojci',hint_ings:'AI predla\u017ee na osnovu naziva. Izmeni ili dodaj svoje.',
@@ -3108,6 +3111,20 @@ function loadDraft(){
     return d;
   }catch(_){return null;}
 }
+function resetForm(){
+  // Alias za clearDraft — kompatibilnost sa test panelom
+  if(typeof clearDraft === 'function') clearDraft();
+  formState.name='';
+  formState.mealTypes=new Set();
+  formState.mealFlags=new Set();
+  formState.categories=new Set();
+  formState.ingredients=[];
+  formState.servings=4;
+  formState.servingsBase=4;
+  formState.aiAccepted=false;
+  formState.aiDismissed=false;
+  formState.aiResult=null;
+}
 function clearDraft(){localStorage.removeItem(DRAFT_KEY);}
 function applyDraft(d){
   formState.name=d.name||'';
@@ -3147,6 +3164,20 @@ function loadDraft(){
     if(Date.now()-d._ts>24*3600*1000){localStorage.removeItem(DRAFT_KEY);return null;}
     return d;
   }catch(_){return null;}
+}
+function resetForm(){
+  // Alias za clearDraft — kompatibilnost sa test panelom
+  if(typeof clearDraft === 'function') clearDraft();
+  formState.name='';
+  formState.mealTypes=new Set();
+  formState.mealFlags=new Set();
+  formState.categories=new Set();
+  formState.ingredients=[];
+  formState.servings=4;
+  formState.servingsBase=4;
+  formState.aiAccepted=false;
+  formState.aiDismissed=false;
+  formState.aiResult=null;
 }
 function clearDraft(){localStorage.removeItem(DRAFT_KEY);}
 function applyDraft(d){
@@ -3807,6 +3838,8 @@ function scheduleAcSearch(query){
   _acDebTimer=setTimeout(()=>runAcSearch(query),130);
 }
 async function runAcSearch(query){
+  // Sačekaj IME — ne triggeri tokom composition
+  if(typeof D !== 'undefined' && D.nameInput && D.nameInput._isComposing) return;
   // ══ VAŽNO: query = ono što je korisnica kucala — NIKAD ne mijenjamo automatski ══
   // Listbox = samo prijedlozi. Korisnica mora KLIKNUTI da bi izabrala.
   // Ako ne klikne — njen tekst ostaje nepromijenjen.
@@ -3876,7 +3909,7 @@ const UNIT_MAP = {
   // engleski
   'g':'g','ml':'ml','kom':'kom',
 };
-const UNIT_SCALE = {'kg':1000,'l':1000,'šolja':240,'cup':240};
+const UNIT_SCALE = {'kg':1000,/* l ostaje l */'šolja':240,'cup':240};
 
 function normalizeUnit(u){
   if(!u)return 'g';
@@ -4207,19 +4240,44 @@ function showAiEmptyState(){
 function triggerAiSuggestion(searchResult){
   if(!searchResult)return;
   if(formState.aiAccepted||formState.aiDismissed)return;
-  if(!searchResult.ings||!searchResult.ings.length){showAiEmptyState();return;}
-  amTelEvent('ai_trigger');
-  amTelEvent('ttfap', {ms: formState._aiStartTime ? Date.now()-formState._aiStartTime : null});
-  amClearAiSlowTimer();
-  // BUG-01+02+03+04: post-process — negacija, jedinice, limit, dedup
+
+  // ── DISH_SEED ima ings — prikaži odmah, bez API ──────────────
+  if(searchResult.ings && searchResult.ings.length > 0){
+    amTelEvent('ai_trigger');
+    amClearAiSlowTimer();
+    const mealName = document.getElementById('am-name-input')?.value||'';
+    const processed = postProcessAiIngs(
+      searchResult.ings.map(i=>typeof i==='string'
+        ? {name:i, qty:'', unit:guessUnit(i), confidence:searchResult.score||0.85}
+        : ({...i, unit:i.unit||guessUnit(i.name)})
+      ),
+      mealName
+    );
+    const result = {
+      ...searchResult,
+      ings: processed.map(i=>i.name),
+      _ings_full: processed,
+      _source: searchResult._source || 'seed'
+    };
+    formState.aiResult = result;
+    renderAiBox(result);
+    return;
+  }
+
+  // ── Nema u seed-u — pokušaj Claude API ──────────────────────
+  // Pokaži loading state dok čekamo API
   const mealName = document.getElementById('am-name-input')?.value||'';
-  const processed = postProcessAiIngs(
-    searchResult.ings.map(i=>typeof i==='string'?{name:i,qty:'',unit:guessUnit(i)}:({...i,unit:i.unit||guessUnit(i.name)})),
-    mealName
-  );
-  const result = {...searchResult, ings: processed.map(i=>i.name), _ings_full: processed};
-  formState.aiResult = result;
-  renderAiBox(result);
+  if(mealName.trim().length > 2 && !formState.aiAccepted && !formState.aiDismissed){
+    amStartAiSlowTimer();
+    fetchAiIngredients(mealName).then(result => {
+      if(result && typeof renderAiBox === 'function') renderAiBox(result);
+    }).catch(() => {
+      amClearAiSlowTimer();
+      showAiEmptyState();
+    });
+  } else {
+    showAiEmptyState();
+  }
 }
 
 function renderAiBox(result){
@@ -4532,12 +4590,6 @@ function setupEcDelegation(){
 function renderExtraChips(){
   const el=D.extraChips;if(!el)return;
   el.innerHTML='';
-  if(formState.categories.size===0){
-    const ph=document.createElement('div');
-    ph.style.cssText='font-size:11px;color:var(--muted);font-style:italic;opacity:.65;padding:2px 0 8px;line-height:1.5;';
-    ph.textContent='npr. slano, zdravo, bez glutena, zima, brzo…';
-    el.appendChild(ph);
-  }
   // Sve sačuvane kategorije — čekirana je samo ako je u selectedCats
   formState.categories.forEach(function(key){
     el.appendChild(ecMakeChip(
@@ -5284,29 +5336,65 @@ function renderThumbs(){ renderImgGrid(); }
 
 // ── Nutrition ─────────────────────────────────────────────────────
 function renderNutri(){
-  const fields=t('nutri_fields')||{};
-  if(!fields||typeof fields!=='object'||!Object.keys(fields).length)return;
-  if(!formState.nutri){
-    // Nema nutri podataka — prikaži poruku umjesto stub vrijednosti
-    // Ima li sastojaka bez količine?
-    const hasIngs = formState.ingredients && formState.ingredients.length > 0;
-    const hasQty  = formState.ingredients && formState.ingredients.some(i => i.qty && parseFloat(i.qty) > 0);
-    if(hasIngs && !hasQty){
-      D.nutriGrid.innerHTML='<div style="font-size:10px;color:#5A4B6A;font-style:italic;padding:6px 0">Dodaj količine sastojaka da vidim nutritivne vrijednosti (npr. 200g, 2 kom).</div>';
-    } else {
-      D.nutriGrid.innerHTML='<div style="font-size:10px;color:#5A4B6A;font-style:italic;padding:6px 0">Dodaj sastojke i količine — nutritivne vrijednosti će se izračunati automatski.</div>';
-    }
+  const fields = t('nutri_fields') || {
+    kcal: {lbl:'Kalorije', unit:'kcal'},
+    prot: {lbl:'Proteini', unit:'g'},
+    carb: {lbl:'Ugljeni hidrati', unit:'g'},
+    fat:  {lbl:'Masti', unit:'g'},
+    fiber:{lbl:'Vlakna', unit:'g'},
+  };
+
+  const grid = D.nutriGrid || document.getElementById('am-nutri-grid');
+  const status = D.nutriStatus || document.getElementById('am-nutri-status');
+  if(!grid) return;
+
+  // Nema sastojaka
+  if(!formState.ingredients || !formState.ingredients.length){
+    grid.innerHTML = '<div style="font-size:13px;color:#7A5AAE;font-style:italic;padding:8px 0;text-align:center">Dodaj sastojke — kalorije će se izračunati automatski ✨</div>';
+    if(status) status.style.display = 'none';
     return;
   }
-  const nutri=formState.nutri;const s=formState.servings;
-  D.nutriGrid.innerHTML=Object.entries(fields).map(([k,f])=>{
-    const val=nutri[k]!=null?Math.round(nutri[k]/4*s*10)/10:'\u2014';
-    return`<div class="nutri-cell"><div class="nutri-cell-lbl">${f.lbl}</div>
-      <div style="display:flex;align-items:baseline;gap:3px">
-        <span class="nutri-cell-val" id="nv-${k}">${val}</span>
-        <span class="nutri-cell-unit">${f.unit}</span>
-      </div></div>`;
-  }).join('');
+
+  // Izračunaj nutri
+  const nutri = computeNutriLocal();
+  if(!nutri || !nutri.kcal){
+    grid.innerHTML = '<div style="font-size:13px;color:#9B8AAB;font-style:italic;padding:8px 0">Dodaj količine sastojaka (npr. 200g, 2 kom) za tačan izračun.</div>';
+    if(status) status.style.display = 'none';
+    return;
+  }
+
+  const s = formState.servings || 4;
+
+  // Prikaži po porciji i ukupno
+  const perServing = {
+    kcal: Math.round(nutri.kcal / s),
+    prot: Math.round(nutri.prot / s * 10) / 10,
+    carb: Math.round(nutri.carb / s * 10) / 10,
+    fat:  Math.round(nutri.fat  / s * 10) / 10,
+    fiber:Math.round((nutri.fiber || 0) / s * 10) / 10,
+  };
+
+  grid.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+      ${Object.entries(perServing).map(([k, val]) => {
+        const f = fields[k] || {lbl: k, unit: 'g'};
+        const colors = {kcal:'#C9A96E', prot:'#7A5AAE', carb:'#5AA88B', fat:'#AA7A5A', fiber:'#8A9B7A'};
+        const col = colors[k] || '#7A5AAE';
+        return `<div style="background:#F8F5FF;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:11px;color:#9B8AAB;margin-bottom:2px">${f.lbl}</div>
+          <div style="font-size:20px;font-weight:700;color:${col}">${val}</div>
+          <div style="font-size:11px;color:#9B8AAB">${f.unit}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="font-size:11px;color:#9B8AAB;text-align:center;font-style:italic">po porciji · ${s} porcija ukupno</div>
+    <div style="font-size:11px;color:#C2B5D4;text-align:center;margin-top:4px">* procjena na osnovu lokalnih podataka</div>
+  `;
+
+  if(status){
+    status.style.display = 'none'; // Sakrij "⚡" kad ima rezultata
+  }
+  formState.nutri = nutri;
 }
 // ── Lokalna baza nutritivnih vrijednosti (na 100g/kom/ml) ─────
 const NUTRI_DB = {
@@ -5529,6 +5617,17 @@ function validate(){
   return ok;
 }
 function handleSave(){
+  // Duplicate submit zaštita — sprječava double-tap
+  if (window._amIsSaving) return;
+  window._amIsSaving = true;
+  const saveBtn = document.getElementById('am-save-btn');
+  if (saveBtn) { saveBtn.disabled = true; saveBtn.style.opacity = '0.6'; }
+  // Reset nakon 3s ili pri grešci
+  const _resetSave = () => {
+    window._amIsSaving = false;
+    if (saveBtn) { saveBtn.disabled = false; saveBtn.style.opacity = ''; }
+  };
+  setTimeout(_resetSave, 3000); // safety fallback
   // Uvijek uzmi direktno iz inputa — ono što je korisnica KUCALA
   if(D.nameInput && D.nameInput.value.trim()) {
     formState.name = D.nameInput.value.trim();
@@ -5560,6 +5659,24 @@ function handleSave(){
 // ── Open / Close ──────────────────────────────────────────────────
 let _prevFocus=null;
 function openModal(){
+  // ── Ako D.overlay nije spreman — mount pa retry ──────────────
+  if(!D.overlay){
+    // Pokušaj mountovati ako nije urađeno
+    if(typeof AmigellaModal !== 'undefined' && AmigellaModal.mount){
+      AmigellaModal.mount('modal-root');
+      // Čekaj jedan tick pa pokušaj ponovo
+      setTimeout(openModal, 50);
+      return;
+    }
+    console.warn('[AM] openModal: D.overlay missing');
+    return;
+  }
+  // ── AbortController — otkazuje sve AI zahtjeve kad modal zatvori ──
+  window._amModalAbort = new AbortController();
+  // GPU layer samo dok je modal otvoren — štedi bateriju
+  const _modalEl = document.getElementById('am-modal');
+  if (_modalEl) _modalEl.style.willChange = 'transform';
+  qaLog('MODAL_OPEN', {ts: Date.now()});
   _prevFocus=document.activeElement;
   if(!D.overlay){console.warn('[AM] openModal: D.overlay missing');return;}
   // Reset state
@@ -5591,6 +5708,13 @@ function openModal(){
   D.modal.addEventListener('keydown',trapFocus);
 }
 function closeModal(){
+  // ── Otkaži sve pending AI/network zahtjeve ──
+  if (window._amModalAbort) { window._amModalAbort.abort(); window._amModalAbort = null; }
+  // Ukloni GPU sloj kad modal zatvori
+  const _modalElClose = document.getElementById('am-modal');
+  if (_modalElClose) _modalElClose.style.willChange = 'auto';
+  if (window._aiAbortController) { window._aiAbortController.abort(); window._aiAbortController = null; }
+  qaLog('MODAL_CLOSE', {ts: Date.now()});
   D.overlay.classList.add('closing');D.overlay.classList.remove('visible');
   D.modal.removeEventListener('keydown',trapFocus);terminateWorker();
   // Cleanup svih timera da nema leakova
@@ -5784,120 +5908,122 @@ function mount(containerId){
     <div id="am-modal">
 
       <!-- HEADER -->
-      <div style="padding:16px 16px 0;background:#fff;flex-shrink:0;">
-        <h2 id="am-modal-title" style="font-family:'Playfair Display',serif;font-size:19px;font-weight:500;color:var(--ink);margin:0 0 3px;font-style:italic">${t('modal_title')}</h2>
-        <div style="font-size:11px;color:#5A4B6A;font-style:italic;margin-bottom:12px;line-height:1.4">${t('warm')}</div>
+      <div style="padding:18px 18px 0;background:#fff;flex-shrink:0;">
+        <h2 id="am-modal-title" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#2E1A47;margin:0 0 4px;font-style:italic">${t('modal_title')}</h2>
+        <div id="am-warm-txt" style="font-size:13px;color:#7A5AAE;font-style:italic;margin-bottom:14px;line-height:1.4">${t('warm')}</div>
         <div style="height:0.5px;background:rgba(122,90,174,.15)"></div>
       </div>
 
       <!-- BODY -->
-      <div class="am-body" id="am-body" style="flex:1;overflow-y:auto;padding:14px 16px 10px;scrollbar-width:none;">
+      <div class="am-body" id="am-body" style="flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 18px 10px;scrollbar-width:none;">
 
         <!-- Naziv jela -->
-        <div style="margin-bottom:12px">
-          <label for="am-name-input" style="color:var(--deep);font-size:10px;font-weight:500;margin-bottom:5px;display:block">${t('lbl_name')}</label>
+        <div style="margin-bottom:16px">
+          <label for="am-name-input" style="color:#7A5AAE;font-size:14px;font-weight:600;margin-bottom:7px;display:block">${t('lbl_name')}</label>
           <div class="am-ac-wrap" style="position:relative">
             <input class="am-input" id="am-name-input" type="text" maxlength="80" data-test="name-input"
               placeholder="${t('ph_name')||'Lagana letnja salata…'}" autocomplete="off" spellcheck="false"
               aria-autocomplete="list" aria-controls="am-ac-list"
               aria-expanded="false" aria-required="true" role="combobox" aria-haspopup="listbox"
-              style="padding:10px 36px 10px 14px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;background:#f8f6fc;font-size:12px;width:100%;box-sizing:border-box;color:#2E1A47">
+              style="padding:13px 42px 13px 16px;border:1px solid rgba(122,90,174,.25);border-radius:12px;background:#f8f6fc;font-size:16px;width:100%;box-sizing:border-box;color:#2E1A47">
             <button type="button" id="am-voice-btn" aria-label="Unesi glasom" data-test="voice-btn"
               onclick="toggleVoice()"
-              style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:14px;opacity:.35;padding:0">🎙️</button>
+              style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;opacity:.45;padding:0">🎙️</button>
             <div id="am-ac-list" class="am-ac-list" role="listbox" hidden></div>
           </div>
           <div class="am-err-msg" id="am-name-error" role="alert" style="display:none">${t('err_name')}</div>
         </div>
 
         <!-- Ovo jelo je... -->
-        <div style="margin-bottom:12px">
-          <div style="font-size:10px;font-weight:500;color:var(--deep);margin-bottom:6px">${t('lbl_moje_jelo')||'Ovo jelo je...'}</div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:14px;font-weight:600;color:#7A5AAE;margin-bottom:10px">${t('lbl_moje_jelo')||'Ovo jelo je...'}</div>
           <div id="am-meal-types-chips" role="group"></div>
           <div id="am-autocat-suggest" style="display:none"></div>
           <div class="am-err-msg" id="am-meal-types-error" role="alert" style="display:none">${t('err_cats')}</div>
         </div>
 
         <!-- Moji filteri -->
-        <div style="margin-bottom:12px">
-          <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:6px">
-            <span style="font-size:10px;font-weight:500;color:var(--deep)">${t('lbl_moji_filteri')||'Moji filteri'}</span>
-            <span id="am-extra-cats-hint" style="font-size:10px;color:#5A4B6A">${t('hint_moji_filteri')||'Do 5 kategorija.'}</span>
+        <div style="margin-bottom:16px">
+          <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;color:#7A5AAE">${t('lbl_moji_filteri')||'Moji filteri'}</span>
           </div>
           <div id="am-extra-chips-container">
             <div id="am-extra-chips" class="ec-chips-area" role="group" aria-label="Moji filteri"></div>
-            <div id="am-new-cat-row" style="display:none;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;">
-              <input id="am-new-cat-input" type="text" class="ec-new-inp" placeholder="npr. Slatko" maxlength="30">
-              <button id="am-new-cat-confirm" type="button" class="ec-new-confirm">Dodaj</button>
-              <button type="button" class="ec-new-cancel" onclick="document.getElementById('am-new-cat-row').style.display='none'">✕</button>
+            <div id="am-new-cat-row" style="display:none;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;">
+              <input id="am-new-cat-input" type="text" class="ec-new-inp" placeholder="npr. Slatko" maxlength="30"
+                style="font-size:14px;padding:10px 14px;border-radius:10px;border:1px solid rgba(122,90,174,.25);background:#f8f6fc;color:#2E1A47;flex:1;min-width:120px">
+              <button id="am-new-cat-confirm" type="button" class="ec-new-confirm"
+                style="font-size:13px;padding:10px 16px;border-radius:100px;background:#7A5AAE;color:#fff;border:none;cursor:pointer;font-weight:600">Dodaj</button>
+              <button type="button" class="ec-new-cancel" onclick="document.getElementById('am-new-cat-row').style.display='none'"
+                style="font-size:16px;background:transparent;border:none;cursor:pointer;color:#9B8AAB;padding:4px 8px">✕</button>
             </div>
           </div>
         </div>
 
         <!-- Divider -->
-        <div style="height:0.5px;background:rgba(122,90,174,.12);margin:4px 0 12px"></div>
+        <div style="height:0.5px;background:rgba(122,90,174,.12);margin:4px 0 14px"></div>
 
         <!-- Sastojci -->
-        <div style="margin-bottom:12px">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-            <span style="font-size:10px;font-weight:500;color:var(--deep)">Sastojci</span>
-            <span id="am-ai-badge" style="font-size:8px;color:var(--deep);background:#EDE8F5;padding:2px 8px;border-radius:100px;font-weight:500">☁ AI predlog</span>
-            <div id="am-ai-signal" style="display:none;align-items:center;gap:4px;font-size:9px;color:var(--deep);font-style:italic">
-              <div class="spinner-ring" style="width:10px;height:10px;border-width:1.5px;flex-shrink:0;"></div>
+        <div style="margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;color:#7A5AAE">Sastojci</span>
+            <span id="am-ai-badge" style="font-size:11px;color:#7A5AAE;background:#EDE8F5;padding:3px 10px;border-radius:100px;font-weight:500">☁ AI predlog</span>
+            <div id="am-ai-signal" style="display:none;align-items:center;gap:4px;font-size:11px;color:#7A5AAE;font-style:italic">
+              <div class="spinner-ring" style="width:12px;height:12px;border-width:1.5px;flex-shrink:0;"></div>
               <span id="am-ai-signal-txt">Tražim…</span>
             </div>
           </div>
           <div id="am-ai-wrap"></div>
-          <ul class="ing-list" id="am-ing-list" aria-label="Sastojci" style="list-style:none;padding:0;margin:0 0 8px">
-            <li id="am-ing-empty" style="padding:6px 0;font-size:10px;color:#5A4B6A;font-style:italic">
-              Upiši naziv jela / AI predlaže...
+          <ul class="ing-list" id="am-ing-list" aria-label="Sastojci" style="list-style:none;padding:0;margin:0 0 10px">
+            <li id="am-ing-empty" style="padding:8px 0;font-size:13px;color:#7A5AAE;font-style:italic">
+              Upiši naziv jela pa će AI predložiti sastojke...
             </li>
           </ul>
-          <div style="display:flex;gap:5px">
+          <div style="display:flex;gap:6px">
             <input class="am-input ing-name" id="am-new-ing-name" type="text" data-test="ingr-name"
               placeholder="Dodaj sastojak…" autocomplete="off"
-              style="flex:1.6;padding:7px 10px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;font-size:11.5px;background:#f8f6fc;color:#2E1A47">
+              style="flex:1.6;padding:11px 12px;border:1px solid rgba(122,90,174,.2);border-radius:10px;font-size:14px;background:#f8f6fc;color:#2E1A47">
             <input class="am-input ing-qty" id="am-new-ing-qty" type="text" inputmode="decimal" data-test="ingr-qty"
-              placeholder="kol." style="width:44px;padding:7px 6px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;font-size:11px;background:#f8f6fc;color:#2E1A47;text-align:center">
+              placeholder="kol." style="width:52px;padding:11px 6px;border:1px solid rgba(122,90,174,.2);border-radius:10px;font-size:13px;background:#f8f6fc;color:#2E1A47;text-align:center">
             <select class="am-input ing-unit" id="am-new-ing-unit" data-test="ingr-unit"
-              style="width:48px;padding:7px 2px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;font-size:10px;background:#f8f6fc;color:#2E1A47">
+              style="width:56px;padding:11px 4px;border:1px solid rgba(122,90,174,.2);border-radius:10px;font-size:12px;background:#f8f6fc;color:#2E1A47">
               ${(t('units')||[]).map(u=>`<option>${escHtml(u)}</option>`).join('')}
             </select>
             <button type="button" class="btn-add-ing" id="am-add-ing-btn" data-test="ingr-add"
-              style="padding:6px 14px;border:0.5px solid rgba(122,90,174,.2);border-radius:100px;background:transparent;font-size:11px;font-weight:500;color:var(--deep);cursor:pointer;transition:all .12s">+</button>
+              style="padding:11px 16px;border:1px solid rgba(122,90,174,.25);border-radius:100px;background:#7A5AAE;color:#fff;font-size:18px;font-weight:500;cursor:pointer;transition:all .12s;flex-shrink:0">+</button>
           </div>
         </div>
 
         <!-- Divider + Dodatno -->
-        <div style="height:0.5px;background:rgba(122,90,174,.12);margin:4px 0 12px"></div>
-        <div style="font-size:10px;font-weight:500;color:#5A4B6A;letter-spacing:.3px;text-transform:uppercase;margin-bottom:8px">Dodatno</div>
+        <div style="height:0.5px;background:rgba(122,90,174,.12);margin:4px 0 14px"></div>
+        <div style="font-size:14px;font-weight:600;color:#7A5AAE;margin-bottom:10px">Dodatno</div>
 
         <!-- Recept i bilješke -->
-        <div style="margin-bottom:12px">
+        <div style="margin-bottom:14px">
           <div class="am-acc-hdr" id="am-recept-hdr" role="button" tabindex="0" aria-expanded="false" aria-controls="am-recept-body"
-            style="border:0.5px solid rgba(122,90,174,.2);border-radius:10px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:#fff">
-            <span style="font-size:10px;font-weight:500;color:#2E1A47">Recept i bilješke</span>
-            <span class="am-acc-icon" style="font-size:9px;color:#5A4B6A;opacity:.6" aria-hidden="true">▾</span>
+            style="border:1px solid rgba(122,90,174,.2);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:#fff">
+            <span style="font-size:14px;font-weight:600;color:#2E1A47">Recept i bilješke</span>
+            <span class="am-acc-icon" style="font-size:11px;color:#7A5AAE" aria-hidden="true">▾</span>
           </div>
           <div class="am-acc-body" id="am-recept-body" role="region" aria-labelledby="am-recept-hdr">
-            <div class="inner" style="padding:10px 12px;border:0.5px solid rgba(122,90,174,.2);border-top:none;border-radius:0 0 10px 10px">
+            <div class="inner" style="padding:12px 14px;border:1px solid rgba(122,90,174,.2);border-top:none;border-radius:0 0 12px 12px">
 
               <!-- Opis recepta — slobodan unos -->
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
-                <label for="am-recept-text" style="font-size:10px;font-weight:500;color:#2E1A47">Kako se pravi</label>
-                <div style="display:flex;gap:4px;align-items:center">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+                <label for="am-recept-text" style="font-size:14px;font-weight:600;color:#2E1A47">Kako se pravi</label>
+                <div style="display:flex;gap:5px;align-items:center">
                   <button type="button" onclick="amReceptFont(13,this)" data-fsize="13"
-                    style="width:22px;height:22px;border:0.5px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:9px;font-weight:600;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s">A</button>
+                    style="width:28px;height:28px;border:1px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:11px;font-weight:700;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center">A</button>
                   <button type="button" onclick="amReceptFont(15,this)" data-fsize="15"
-                    style="width:22px;height:22px;border:0.5px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:11px;font-weight:600;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s">A</button>
+                    style="width:32px;height:32px;border:1px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:14px;font-weight:700;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center">A</button>
                   <button type="button" onclick="amReceptFont(18,this)" data-fsize="18"
-                    style="width:22px;height:22px;border:0.5px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:13px;font-weight:600;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s">A</button>
+                    style="width:36px;height:36px;border:1px solid rgba(122,90,174,.25);border-radius:6px;background:#f8f6fc;font-size:17px;font-weight:700;color:#5A4B6A;cursor:pointer;display:flex;align-items:center;justify-content:center">A</button>
                 </div>
               </div>
               <textarea id="am-recept-text"
                 placeholder="Opišite korake pripreme, savjete, napomene…"
                 rows="5"
-                style="width:100%;box-sizing:border-box;padding:8px 10px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;background:#f8f6fc;font-size:15px;font-family:var(--font);color:#2E1A47;line-height:1.6;resize:vertical;outline:none;transition:border-color .15s,font-size .15s"
+                style="width:100%;box-sizing:border-box;padding:8px 10px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;background:#f8f6fc;font-size:16px;font-family:var(--font);color:#2E1A47;line-height:1.6;resize:vertical;outline:none;transition:border-color .15s,font-size .15s"
                 onfocus="this.style.borderColor='var(--deep)'"
                 onblur="this.style.borderColor='rgba(122,90,174,.2)'"
               ></textarea>
@@ -5923,8 +6049,8 @@ function mount(containerId){
         <div style="margin-bottom:12px">
           <div class="am-acc-hdr" id="am-slika-hdr" role="button" tabindex="0" aria-expanded="false" aria-controls="am-slika-body"
             style="border:0.5px solid rgba(122,90,174,.2);border-radius:10px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:#fff">
-            <span style="font-size:10px;font-weight:500;color:#2E1A47">Slike</span>
-            <span class="am-acc-icon" style="font-size:9px;color:#5A4B6A;opacity:.6" aria-hidden="true">▾</span>
+            <span style="font-size:14px;font-weight:600;color:#2E1A47">Slike</span>
+            <span class="am-acc-icon" style="font-size:11px;color:#7A5AAE" aria-hidden="true">▾</span>
           </div>
           <div class="am-acc-body" id="am-slika-body" role="region" aria-labelledby="am-slika-hdr">
             <div class="inner" style="padding:10px 12px;border:0.5px solid rgba(122,90,174,.2);border-top:none;border-radius:0 0 10px 10px">
@@ -5934,9 +6060,9 @@ function mount(containerId){
 
               <!-- Dugmad za dodavanje -->
               <div style="display:flex;gap:6px;flex-wrap:wrap">
-                <button type="button" style="padding:6px 12px;border:0.5px solid rgba(122,90,174,.2);border-radius:100px;background:transparent;font-size:10px;font-weight:500;color:var(--deep);cursor:pointer;" onclick="amPickImage('gallery')">+ Galerija</button>
-                <button type="button" id="am-ocr-btn" style="padding:6px 12px;border:0.5px solid rgba(122,90,174,.2);border-radius:100px;background:transparent;font-size:10px;font-weight:500;color:var(--deep);cursor:pointer;" onclick="document.getElementById('am-ocr-input').click()">+ OCR recepta</button>
-                <button type="button" id="am-ai-img-btn" style="padding:6px 12px;border:0.5px solid rgba(122,90,174,.2);border-radius:100px;background:transparent;font-size:10px;font-weight:500;color:var(--deep);cursor:pointer;" onclick="amSuggestImageManual()">✨ AI prijedlog</button>
+                <button type="button" style="padding:10px 16px;border:1px solid rgba(122,90,174,.25);border-radius:100px;background:transparent;font-size:13px;font-weight:500;color:#7A5AAE;cursor:pointer;" onclick="amPickImage('gallery')">+ Galerija</button>
+                <button type="button" id="am-ocr-btn" style="padding:10px 16px;border:1px solid rgba(122,90,174,.25);border-radius:100px;background:transparent;font-size:13px;font-weight:500;color:#7A5AAE;cursor:pointer;" onclick="document.getElementById('am-ocr-input').click()">+ OCR recepta</button>
+                <button type="button" id="am-ai-img-btn" style="padding:10px 16px;border:1px solid rgba(122,90,174,.25);border-radius:100px;background:transparent;font-size:13px;font-weight:500;color:#7A5AAE;cursor:pointer;" onclick="amSuggestImageManual()">✨ AI prijedlog</button>
               </div>
 
               <input type="file" id="am-ocr-input" accept="image/*" style="display:none" onchange="importFromOcrImage(this.files[0])">
@@ -5948,15 +6074,15 @@ function mount(containerId){
         <div style="margin-bottom:12px">
           <div class="am-acc-hdr" id="am-nutri-hdr" role="button" tabindex="0" aria-expanded="false" aria-controls="am-nutri-body"
             style="border:0.5px solid rgba(122,90,174,.2);border-radius:10px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:#fff">
-            <span style="font-size:10px;font-weight:500;color:#2E1A47">${t('lbl_nutri')||'Nutritivne vrijednosti'}</span>
+            <span style="font-size:14px;font-weight:600;color:#2E1A47">${t('lbl_nutri')||'Nutritivne vrijednosti'}</span>
             <span class="am-acc-icon" style="font-size:9px;color:#5A4B6A;opacity:.6" aria-hidden="true">▾</span>
           </div>
           <div class="am-acc-body" id="am-nutri-body" role="region" aria-labelledby="am-nutri-hdr">
             <div class="inner" style="padding:10px 12px;border:0.5px solid rgba(122,90,174,.2);border-top:none;border-radius:0 0 10px 10px">
-              <div class="am-ai-spinner" id="am-nutri-status" style="font-size:10px;color:#5A4B6A">⚡ ${t('nutri_status')}</div>
+              <div class="am-ai-spinner" id="am-nutri-status" style="font-size:13px;color:#7A5AAE">⚡ ${t('nutri_status')}</div>
               <div class="nutri-grid" id="am-nutri-grid"></div>
               <div class="nutri-note">${t('nutri_info')}</div>
-              <button type="button" id="am-nutri-edit-btn" style="padding:5px 10px;border:0.5px solid rgba(122,90,174,.2);border-radius:8px;background:transparent;font-size:10px;color:#5A4B6A;cursor:pointer;margin-top:6px">${t('nutri_edit')}</button>
+              <button type="button" id="am-nutri-edit-btn" style="padding:9px 14px;border:1px solid rgba(122,90,174,.2);border-radius:10px;background:transparent;font-size:13px;color:#7A5AAE;cursor:pointer;margin-top:8px">${t('nutri_edit')}</button>
             </div>
           </div>
         </div>
@@ -5975,12 +6101,12 @@ function mount(containerId){
       <div class="am-footer" id="am-footer-main">
         <button type="button" id="am-cancel-btn"
           onclick="closeModal()"
-          style="padding:8px 20px;border:none;background:transparent;font-size:11px;font-weight:500;color:#5A4B6A;cursor:pointer;border-radius:100px;font-family:var(--font)">
+          style="padding:14px 24px;border:none;background:transparent;font-size:15px;font-weight:600;color:#7A5AAE;cursor:pointer;border-radius:100px;font-family:var(--font)">
           ${t('btn_cancel')||'Otkaži'}
         </button>
         <div style="flex:1"></div>
         <button type="button" class="btn-save" id="am-save-btn" data-test="save"
-          style="padding:8px 22px;border:none;border-radius:100px;background:var(--deep);color:#fff;font-size:11px;font-weight:500;cursor:pointer;font-family:var(--font)">
+          style="padding:14px 28px;border:none;border-radius:100px;background:#7A5AAE;color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);box-shadow:0 3px 14px rgba(122,90,174,.4)">
           ${t('btn_save')||'Sačuvaj'}
         </button>
       </div>
@@ -6072,7 +6198,42 @@ function mount(containerId){
     if(listbox&&!listbox.hidden&&!listbox.contains(ev.target)&&ev.target!==nameInput)closeListbox();
   });
   // ec kategorije: confirm/input listeneri se postavljaju u ecShowAddInput
-  D.addIngBtn.addEventListener('click',addIngFromInput);
+  // Wire up new-cat-confirm button
+  if(D.newCatConfirm) D.newCatConfirm.addEventListener('click', confirmNewCat);
+  if(D.newCatInput) D.newCatInput.addEventListener('keydown', function(ev){
+    if(ev.key==='Enter'){ev.preventDefault(); confirmNewCat();}
+    if(ev.key==='Escape'){document.getElementById('am-new-cat-row').style.display='none';}
+  });
+  // Wire up + Novi filter dugme
+  const newFilterBtn = document.querySelector('.ec-add-btn, #am-add-filter-btn');
+  if(newFilterBtn) newFilterBtn.addEventListener('click', function(){
+    document.getElementById('am-new-cat-row').style.display='flex';
+    setTimeout(()=>D.newCatInput&&D.newCatInput.focus(), 50);
+  });
+  
+  // ── IME Composition (Android/iOS CJK, Arabic, Korean) ──────
+  if(D.nameInput) {
+    D.nameInput.addEventListener('compositionstart', () => { D.nameInput._isComposing = true; });
+    D.nameInput.addEventListener('compositionend', () => {
+      D.nameInput._isComposing = false;
+      scheduleAcSearch(D.nameInput.value);
+    });
+  }
+  D.addIngBtn.addEventListener('click', () => {
+    addIngFromInput();
+    // Auto-otvori nutri accordion i izračunaj
+    setTimeout(() => {
+      if(formState.ingredients && formState.ingredients.length > 0) {
+        renderNutri();
+        // Otvori nutri accordion ako nije otvoren
+        const nutriBody = document.getElementById('am-nutri-body');
+        const nutriHdr = document.getElementById('am-nutri-hdr');
+        if(nutriBody && nutriHdr && nutriBody.style.display === 'none') {
+          nutriHdr.click();
+        }
+      }
+    }, 100);
+  });
   D.newIngName.addEventListener('keydown',ev=>{if(ev.key==='Enter')addIngFromInput();});
   if(D.newIngQty)D.newIngQty.addEventListener('keydown',ev=>{if(ev.key==='Enter')addIngFromInput();});
   if(D.newIngUnit)D.newIngUnit.addEventListener('keydown',ev=>{if(ev.key==='Enter')addIngFromInput();});
@@ -6143,6 +6304,12 @@ window.AmigellaModal={open:openModal,close:closeModal,mount};
 // ── Slika jela ─────────────────────────────────────────────
 function amShowPreview(file){
   if(!file)return;
+  // Max 3 slike
+  const existingImgs = document.querySelectorAll('#am-img-grid .am-img-thumb');
+  if(existingImgs.length >= 3){
+    if(typeof toast==='function') toast('Maksimalno 3 slike po receptu.','info');
+    return;
+  }
   if(!file.type.startsWith('image/')){
     toast('Molim odaberi sliku (JPG, PNG, WEBP).','error');return;
   }
@@ -6153,6 +6320,11 @@ function amShowPreview(file){
   var reader=new FileReader();
   reader.onload=function(e){
     formState._imgDataUrl=e.target.result;
+    // Oslobodi memoriju od starog objectURL
+    if(formState._imgBlobUrl){
+      URL.revokeObjectURL(formState._imgBlobUrl);
+      formState._imgBlobUrl=null;
+    }
     formState._imgUrl=null; // vlastita slika — ukloni AI prijedlog URL
     var img=document.getElementById('am-meal-img');
     var ph=document.getElementById('am-meal-img-placeholder');
@@ -6262,6 +6434,8 @@ window.amSuggestImage = function amSuggestImage(name){
 
 // ══ EXPOSE UNUTAR IIFE — sve funkcije dostupne globalno odmah ══
 window.filterByNegation      = filterByNegation;
+window.rateLimit = function(){ return typeof _aiRateLimit !== 'undefined' ? _aiRateLimit : null; };
+// _aiRateLimit se definiše kasnije — expose se dešava u EXPOSE UNUTAR IIFE bloku
 window.parseCountLimit       = parseCountLimit;
 window.dedupeIngredients     = dedupeIngredients;
 window.normalizeQtyUnit      = normalizeQtyUnit;
@@ -6666,7 +6840,7 @@ function amRKPrint(rk) {
     '<p style="font-size:18px;font-weight:bold;letter-spacing:2px;background:#f5f0ff;padding:16px;border-radius:8px;">' +
     rk.match(/.{1,8}/g).join('-') + '</p>' +
     '<p style="color:#888">Čuvaj ovo na sigurnom. Nikome ne davaj.</p>' +
-    '</body></html>');
+'</body></html>');
   win.print();
 }
 
@@ -6927,44 +7101,195 @@ function _aiRateCheck(estimatedTokens) {
   return true;
 }
 
-// ── Generički Claude API poziv (timeout 5s, retry 2×) ────────
+// ══════════════════════════════════════════════════════════════
+// NETWORK RESILIENCY LAYER — Beta 2
+// Retry + Backoff + Jitter + Timeout + CORS + 429 + 5xx + Offline
+// ══════════════════════════════════════════════════════════════
+
+// ── Error taxonomy ─────────────────────────────────────────────
+const NET_ERR = {
+  OFFLINE:  'offline',
+  CORS:     'cors',
+  TIMEOUT:  'timeout',
+  RATE_429: 'rate_429',
+  SERVER:   'server_5xx',
+  ABORT:    'abort',
+  UNKNOWN:  'unknown'
+};
+
+function classifyNetError(err, status) {
+  if (!navigator.onLine || err?.message?.includes('NetworkError') || err?.message?.includes('Failed to fetch'))
+    return NET_ERR.OFFLINE;
+  if (err?.name === 'AbortError') return NET_ERR.ABORT;
+  if (err?.message?.includes('CORS') || err?.message?.includes('cross-origin') || err?.message?.includes('blocked'))
+    return NET_ERR.CORS;
+  if (status === 429) return NET_ERR.RATE_429;
+  if (status >= 500 && status <= 599) return NET_ERR.SERVER;
+  if (err?.name === 'TimeoutError' || err?.message?.includes('timeout')) return NET_ERR.TIMEOUT;
+  return NET_ERR.UNKNOWN;
+}
+
+// ── User-facing messages (localized-ready) ─────────────────────
+const NET_MSG = {
+  offline:     'Nema interneta. Koristiš sačuvane podatke.',
+  cors:        'Nemoguće dohvatiti podatke. Pokušaj ponovo.',
+  timeout:     'Zahtjev predugo traje. Pokušaj ponovo.',
+  rate_429:    'Previše zahtjeva. Čekam trenutak...',
+  server_5xx:  'Servis trenutno nedostupan. Pokušaj za par sekundi.',
+  abort:       '',   // tiho — korisnica je sama zatvorila
+  unknown:     'Nešto nije u redu. Pokušaj ponovo.'
+};
+
+// ── QA mode (aktivira se sa ?qa=1 u URL-u) ────────────────────
+const _QA = (new URLSearchParams(window.location.search)).get('qa') === '1';
+function qaLog(tag, data) {
+  if (!_QA) return;
+  console.groupCollapsed(`%c[QA:${tag}]`, 'color:#C9A96E;font-weight:bold', JSON.stringify(data||{}).slice(0,120));
+  console.trace();
+  console.groupEnd();
+}
+
+// Long task observer (QA mode)
+if (_QA && 'PerformanceObserver' in window) {
+  try {
+    new PerformanceObserver(list => {
+      list.getEntries().forEach(e => {
+        if (e.duration > 50) qaLog('LONG_TASK', {ms: Math.round(e.duration), name: e.name});
+      });
+    }).observe({entryTypes: ['longtask']});
+  } catch(_) {}
+  // Storage estimate
+  if (navigator.storage?.estimate) {
+    navigator.storage.estimate().then(est => {
+      qaLog('STORAGE', {used: Math.round(est.usage/1024)+'KB', quota: Math.round(est.quota/1024/1024)+'MB'});
+    });
+  }
+}
+
+// ── Retry s Backoff + Jitter + AbortController + Timeout ──────
+// delays: 250→500→1000→2000→4000ms (cap), jitter ±20%
+async function retryWithBackoff(fn, opts) {
+  const {
+    maxAttempts = 3,
+    baseDelay   = 250,
+    maxDelay    = 4000,
+    timeoutMs   = 7000,
+    signal      = null,      // vanjski AbortSignal (modal close)
+    onRetry     = null,      // callback(attempt, delay, errType)
+  } = opts || {};
+
+  let lastErr, lastStatus;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    // Provjeri da li je otkazano
+    if (signal?.aborted) throw Object.assign(new Error('aborted'), {name:'AbortError'});
+
+    // Backoff + jitter (osim prvog pokušaja)
+    if (attempt > 0) {
+      const exp = Math.min(baseDelay * Math.pow(2, attempt - 1), maxDelay);
+      const jitter = exp * 0.2 * (Math.random() * 2 - 1); // ±20%
+      const delay = Math.round(exp + jitter);
+      qaLog('RETRY', {attempt, delay, errType: classifyNetError(lastErr, lastStatus)});
+      if (onRetry) onRetry(attempt, delay, classifyNetError(lastErr, lastStatus));
+      await new Promise((res, rej) => {
+        const t = setTimeout(res, delay);
+        if (signal) signal.addEventListener('abort', () => { clearTimeout(t); rej(new DOMException('aborted','AbortError')); }, {once:true});
+      });
+    }
+
+    // Per-request timeout
+    const reqAbort = new AbortController();
+    const timeoutId = setTimeout(() => reqAbort.abort(), timeoutMs);
+    // Kombiniraj vanjski signal i timeout signal
+    if (signal) signal.addEventListener('abort', () => reqAbort.abort(), {once:true});
+
+    try {
+      const result = await fn(reqAbort.signal);
+      clearTimeout(timeoutId);
+      qaLog('NET_OK', {attempt});
+      return result;
+    } catch(e) {
+      clearTimeout(timeoutId);
+      lastErr = e;
+      lastStatus = e.status;
+      const errType = classifyNetError(e, e.status);
+      qaLog('NET_ERR', {attempt, errType, msg: e.message?.slice(0,80)});
+
+      // Ne ponavljaj ako: abort, offline (nema smisla), CORS (neće se popraviti)
+      if (errType === NET_ERR.ABORT) throw e;
+      if (errType === NET_ERR.OFFLINE) throw Object.assign(e, {_netType: NET_ERR.OFFLINE});
+      if (errType === NET_ERR.CORS) throw Object.assign(e, {_netType: NET_ERR.CORS});
+
+      // 429 — čekaj Retry-After ako postoji
+      if (errType === NET_ERR.RATE_429 && e._retryAfter) {
+        const extra = Math.min(parseInt(e._retryAfter) * 1000, 10000);
+        await new Promise(r => setTimeout(r, extra));
+      }
+
+      if (attempt === maxAttempts - 1) throw Object.assign(e, {_netType: errType});
+    }
+  }
+}
+
+// ── Generički Claude API poziv — NOVA verzija ─────────────────
 async function callClaude(userPrompt, systemPrompt, imageBase64, imageMime) {
   const msgContent = [];
   if (imageBase64) {
-    msgContent.push({
-      type: 'image',
-      source: { type: 'base64', media_type: imageMime || 'image/jpeg', data: imageBase64 }
-    });
+    msgContent.push({ type:'image', source:{type:'base64', media_type:imageMime||'image/jpeg', data:imageBase64} });
   }
-  msgContent.push({ type: 'text', text: userPrompt });
+  msgContent.push({ type:'text', text:userPrompt });
   const body = {
     model: CLAUDE_MODEL,
     max_tokens: CLAUDE_MAX_TOKENS,
     system: systemPrompt || '',
-    messages: [{ role: 'user', content: msgContent }]
+    messages: [{ role:'user', content:msgContent }]
   };
 
-  // Retry s exponential backoff: 250ms, 750ms
-  const delays = [250, 750];
-  let lastErr;
-  for (let attempt = 0; attempt <= 2; attempt++) {
-    if (attempt > 0) await new Promise(r => setTimeout(r, delays[attempt - 1]));
-    try {
+  // Modal close signal — otkazuje sve pending zahtjeve
+  const modalSignal = window._amModalAbort?.signal || null;
+
+  const result = await retryWithBackoff(
+    async (signal) => {
+      window._aiAbortController = new AbortController();
       const resp = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+        signal,
       });
-      if (!resp.ok) throw new Error('Claude API ' + resp.status);
+      if (resp.status === 429) {
+        const retryAfter = resp.headers.get('Retry-After');
+        const err = new Error('Claude API 429');
+        err.status = 429;
+        err._retryAfter = retryAfter;
+        // Pokaži korisniku
+        if(typeof toast==='function') toast(NET_MSG.rate_429, 'info');
+        throw err;
+      }
+      if (!resp.ok) {
+        const err = new Error('Claude API ' + resp.status);
+        err.status = resp.status;
+        throw err;
+      }
       const data = await resp.json();
       return data.content?.find(b => b.type === 'text')?.text || '';
-    } catch (e) {
-      lastErr = e;
-      if (attempt < 2) continue;
+    },
+    {
+      maxAttempts: 3,
+      baseDelay: 250,
+      maxDelay: 4000,
+      timeoutMs: 7000,
+      signal: modalSignal,
+      onRetry: (attempt, delay, errType) => {
+        if (errType === NET_ERR.SERVER && typeof toast === 'function') {
+          toast(NET_MSG.server_5xx, 'info');
+        }
+      }
     }
-  }
-  throw lastErr || new Error('callClaude failed');
+  );
+  return result;
 }
+
 
 // ── Helper: da li je slika tanjir/jelo (bez teksta)? ─────────
 // Heuristika na bazi OCR rezultata — ne troši extra API poziv
@@ -7003,7 +7328,13 @@ function parseClaudeJson(text) {
 async function fetchAiIngredients(mealName) {
   if (!mealName || mealName.trim().length < 2) return null;
   const cacheKey = mealName.toLowerCase().trim();
-  // Redosljed: cache → seed → Claude (optimalno za trošak)
+
+  // ── Offline check — odmah vrati null, ne troši bateriju ──
+  if (!navigator.onLine) {
+    qaLog('NET_OFFLINE', {fn: 'fetchAiIngredients'});
+    if(typeof toast==='function') toast(NET_MSG.offline, 'info');
+    return null;
+  }
   // 1. Cache hit → odmah vrati
   const cached = _cacheGet(cacheKey);
   if (cached) return cached;
@@ -7327,11 +7658,12 @@ window.amTelemetry = _amTelemetry;
 // ── openAddMeal ADAPTER ──────────────────────────────────────────
 (function() {
   var _mounted = false;
-  window.openAddMeal = function() {
-    if (!_mounted) {
-      AmigellaModal.mount('modal-root');
-      _mounted = true;
-      document.addEventListener('amigella:meal:saved', function(ev) {
+  var _listenerAdded = false;
+
+  function _addSaveListener() {
+    if (_listenerAdded) return;
+    _listenerAdded = true;
+    document.addEventListener('amigella:meal:saved', function(ev) {
         var d = ev.detail; if (!d || !d.name) return;
 
           // Auto-assign emoji na osnovu kategorija/sastojaka
@@ -7394,9 +7726,32 @@ window.amTelemetry = _amTelemetry;
         if (typeof logEvent === 'function') logEvent('meal.saved', { name: meal.name });
       });
     }
-    AmigellaModal.open();
-    if (typeof logEvent === 'function') logEvent('add_meal.opened', {});
+
+  window.openAddMeal = function() {
+    if (!_mounted) {
+      AmigellaModal.mount('modal-root');
+      _mounted = true;
+      _addSaveListener();
+      // Čekaj mount pa otvori
+      setTimeout(function() {
+        if(typeof openModal === 'function') openModal();
+        else AmigellaModal.open();
+      }, 30);
+    } else {
+      if(typeof openModal === 'function') openModal();
+      else AmigellaModal.open();
+    }
   };
+  // openModal se poziva kroz window.openAddMeal
+  // ── Expose _aiRateLimit globalno (definisan u ovom IIFE-u) ──
+  window._aiRateLimit = _aiRateLimit;
+  // ── Network Resiliency Layer — globalni expose ──
+  window.NET_ERR          = NET_ERR;
+  window.NET_MSG          = NET_MSG;
+  window.retryWithBackoff = retryWithBackoff;
+  window.classifyNetError = classifyNetError;
+  window.qaLog            = qaLog;
+  window._QA_MODE         = _QA;
 })();
 
 
@@ -9574,7 +9929,7 @@ async function uxSuiteChecklist(){
     return r !== null && r.recipeIngredient.length === 2;
   }, s));
   out.push(await uxT('T3: parseRecipeFromHtml (JSON-LD) → parsira ings', ()=>{
-    const html = '<script type="application/ld+json">'+
+    const html = '<scr'+'ipt type="application/ld+json">'+
       '{"@type":"Recipe","recipeIngredient":["200g brašno","3 jaja","100ml mleko"]}'+
       '</scr'+'ipt>';
     const r = parseRecipeFromHtml(html);
@@ -10600,6 +10955,115 @@ console.log('[Amigella] Integrations loaded: OpenFoodFacts ✓ TheMealDB ✓ Wik
 </div>
 
 
+<script>
+
+// ── iOS Safari keyboard resize — visualViewport ─────────────
+(function() {
+  const vv = window.visualViewport;
+  if (!vv || !document.getElementById('am-modal')) return;
+  
+  let _rafId = null;
+  function onVVResize() {
+    if (_rafId) cancelAnimationFrame(_rafId);
+    _rafId = requestAnimationFrame(function() {
+      const modal = document.getElementById('am-modal');
+      const overlay = document.getElementById('am-overlay');
+      if (!modal || !overlay) return;
+      // Samo dok je modal vidljiv
+      if (overlay.style.display === 'none') return;
+      // Postavi visinu na vidljivi viewport (izbjegni keyboard overlap)
+      const h = vv.height;
+      modal.style.maxHeight = h + 'px';
+      modal.style.height = h + 'px';
+      qaLog && qaLog('VV_RESIZE', {h: Math.round(h)});
+    });
+  }
+  
+  vv.addEventListener('resize', onVVResize, {passive: true});
+  vv.addEventListener('scroll', onVVResize, {passive: true});
+  
+  // Resetuj kad modal zatvori
+  document.addEventListener('amigella:modal:close', function() {
+    const modal = document.getElementById('am-modal');
+    if (modal) { modal.style.maxHeight = ''; modal.style.height = ''; }
+  });
+})();
+
+
+// ── IndexedDB unavailable fallback (Safari Private Mode) ────
+(function() {
+  let _idbChecked = false;
+  function checkIDBAvailability() {
+    if (_idbChecked) return;
+    _idbChecked = true;
+    try {
+      const req = indexedDB.open('__idb_test__', 1);
+      req.onerror = function() {
+        // IndexedDB nije dostupan — obavijesti korisnica jednom
+        if (!sessionStorage.getItem('_idb_warn')) {
+          sessionStorage.setItem('_idb_warn', '1');
+          setTimeout(function() {
+            if(typeof toast === 'function') {
+              toast('Privatni mod: podaci se čuvaju samo u ovoj sesiji.', 'info');
+            }
+          }, 2000);
+        }
+        qaLog && qaLog('IDB_UNAVAILABLE', {fallback: 'localStorage'});
+      };
+      req.onsuccess = function() {
+        req.result.close();
+        indexedDB.deleteDatabase('__idb_test__');
+      };
+    } catch(e) {
+      qaLog && qaLog('IDB_ERROR', {msg: e.message});
+    }
+  }
+  // Provjeri pri startu
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkIDBAvailability);
+  } else {
+    checkIDBAvailability();
+  }
+})();
+
+
+// ── Camera permission error handling ────────────────────────
+window._amHandleCamError = function(err) {
+  if (!err) return;
+  const msg = err.name === 'NotAllowedError' ? 'Kamera nije dozvoljena. Provjeri podešavanja.' :
+              err.name === 'NotFoundError'   ? 'Kamera nije pronađena na uređaju.' :
+              err.name === 'NotReadableError'? 'Kamera je u upotrebi drugom aplikacijom.' :
+              'Kamera nije dostupna. Pokušaj ponovo.';
+  if(typeof toast === 'function') toast(msg, 'error');
+  qaLog && qaLog('CAM_ERROR', {name: err.name, msg: err.message?.slice(0,80)});
+};
+
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden'){
+    // Otkaži pending AI zahtjeve
+    if(window._aiAbortController){window._aiAbortController.abort();window._aiAbortController=null;}
+    if(window._amModalAbort){window._amModalAbort.abort();}
+    qaLog && qaLog('VIS_HIDDEN', {ts: Date.now()});
+  } else if(document.visibilityState==='visible'){
+    // Resuming — refresh modal AbortController ako je modal otvoren
+    qaLog && qaLog('VIS_VISIBLE', {ts: Date.now()});
+    const overlay = document.getElementById('am-overlay');
+    if(overlay && overlay.classList.contains('visible')){
+      // Modal je otvoren — obnovi AbortController za nove zahtjeve
+      window._amModalAbort = new AbortController();
+      // Ako je AI signal bio otkazan — prikaži hint
+      const aiWrap = document.getElementById('am-ai-wrap');
+      if(aiWrap && aiWrap.innerHTML === ''){
+        const hint = document.createElement('div');
+        hint.style.cssText = 'font-size:12px;color:#7A5AAE;font-style:italic;padding:4px 0;text-align:center;';
+        hint.textContent = 'Upiši naziv za AI prijedlog sastojaka';
+        aiWrap.appendChild(hint);
+        setTimeout(()=>{ if(aiWrap.contains(hint)) aiWrap.removeChild(hint); }, 4000);
+      }
+    }
+  }
+});
+</script>
 </body>
 </html>
 
