@@ -144,7 +144,7 @@ body{
 .tb:hover,.tb.on{background:var(--deep2);color:var(--deep);border-color:var(--deep)}
 
 /* ── Scroll ── */
-.scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 16px 80px;scrollbar-width:none}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 16px 80px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none}
 .slbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);padding:9px 4px 5px}
 
@@ -1393,9 +1393,11 @@ input::-moz-placeholder, textarea::-moz-placeholder { color:#5A4B6A !important; 
   <!-- ══ JELA VIEW ══ -->
   <div id="vw-jela" class="scroll">
     <!-- PRIMARY CTA — prvi element unutar Jela view-a, ispod tab-ova -->
-    <button class="add-cta" onclick="openAddMeal()" aria-label="Dodaj jelo" id="add-cta" data-test="btn-add-meal" ontouchstart="void(0)">
-      <span class="add-cta-icon">＋</span>
-      <span id="add-cta-lbl">+ Novi recept</span>
+    <button class="add-cta" id="add-cta" data-test="btn-add-meal"
+      onclick="if(typeof openAddMeal==='function'){openAddMeal();}else if(typeof AmigellaModal!=='undefined'){AmigellaModal.open();}"
+      aria-label="Dodaj jelo">
+      <span class="add-cta-icon" style="pointer-events:none">＋</span>
+      <span id="add-cta-lbl" style="pointer-events:none">+ Novi recept</span>
     </button>
     <div id="main-packs-wrap"></div>
     <div class="slbl">Moja jela</div>
@@ -11090,5 +11092,3 @@ document.addEventListener('visibilitychange',function(){
 </script>
 </body>
 </html>
-
-<!-- touch fix 2 -->
